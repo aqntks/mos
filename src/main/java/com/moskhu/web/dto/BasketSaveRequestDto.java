@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class BasketSaveRequestDto {
-    private Long id;
     private String consumerId;
     private Long menuId;
     @Builder

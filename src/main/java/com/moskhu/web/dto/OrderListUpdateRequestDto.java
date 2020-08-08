@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class OrderListUpdateRequestDto {
-    private Long id;
     private String consumerId;
     private Long menuId;
 
