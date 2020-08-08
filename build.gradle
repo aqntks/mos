@@ -1,14 +1,45 @@
-plugins {
-    id 'java'
+buildscript{
+    ext{
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories{
+        mavenCentral()
+        maven { url 'https://repo.spring.io/libs-milestone'}
+        jcenter()
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group 'com.moskhu'
 version '1.0-SNAPSHOT'
 
-repositories {
+
+repositories{
     mavenCentral()
+    jcenter()
+}
+dependencies{
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('com.h2database:h2')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile('org.mariadb.jdbc:mariadb-java-client')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    annotationProcessor('org.projectlombok:lombok')
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
+
+
+
