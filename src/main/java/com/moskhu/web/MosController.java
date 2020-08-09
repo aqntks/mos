@@ -13,4 +13,9 @@ public class MosController {
     public String home(Model model) {
         return "home";
     }
+
+    @GetMapping("/cart") //장바구니 화면
+    public String cart(Model model) {
+        return "cart";
+    }
 }
