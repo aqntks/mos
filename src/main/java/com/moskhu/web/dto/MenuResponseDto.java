@@ -10,6 +10,8 @@ public class MenuResponseDto {
     private String menuName;
     private Integer menuPrice;
     private String menuDescription;
+    private String menuImg;
+    private Integer menuType;
 
     public MenuResponseDto(Menu entity){
         this.menuId = entity.getMenuId();
@@ -17,5 +19,7 @@ public class MenuResponseDto {
         this.menuName = entity.getMenuName();
         this.menuPrice = entity.getMenuPrice();
         this.menuDescription = entity.getMenuDescription();
+        this.menuImg = entity.getMenuImg();
+        this.menuType = entity.getMenuType();
     }
 }
