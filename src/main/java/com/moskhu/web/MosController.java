@@ -1,16 +1,12 @@
 package com.moskhu.web;
 
-import com.moskhu.domain.posts.BasketRepository;
-import com.moskhu.domain.posts.Menu;
-import com.moskhu.domain.posts.MenuRepository;
-import com.moskhu.domain.posts.OrderListRepository;
+import com.moskhu.domain.posts.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Controller
@@ -63,7 +59,33 @@ public class MosController {
 
     @GetMapping("/cart") //장바구니 화면
     public String cart(Model model) {
-        model.addAttribute("basket", basketRepository.findAllDesc());
+        List<Basket> basket = basketRepository.findAllDesc();
+        List<MenuCount> list = new ArrayList<>();
+        //List 저장 인덱스 확인용
+        Map<String, Integer> check = new TreeMap<>();
+        int index = 0;
+        int totalPrice = 0;
+
+        for(Basket b : basket) {
+            Optional<Menu> menu = menuRepository.findById(b.getMenuId());
+            //이미 존재하는 경우
+            if(check.containsKey(menu.get().getMenuName())) {
+                list.set(check.get(menu.get().getMenuName()), new MenuCount(menu.get().getMenuName(), menu.get().getMenuPrice(), list.get(check.get(menu.get().getMenuName())).getCount()+1, b));
+
+            }
+            //아닌 경우
+            else{
+                check.put(menu.get().getMenuName(), index++);
+                list.add(new MenuCount(menu.get().getMenuName(), menu.get().getMenuPrice(), 1, b));
+            }
+        }
+
+        //총액
+        for(MenuCount mc : list)
+            totalPrice += mc.getAllCount();
+
+        model.addAttribute("basket", list);
+        model.addAttribute("totalPrice", totalPrice);
         return "cart";
     }
 }
