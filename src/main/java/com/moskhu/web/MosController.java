@@ -1,6 +1,11 @@
 package com.moskhu.web;
 
 import com.moskhu.domain.posts.*;
+import com.moskhu.service.posts.BasketService;
+import com.moskhu.service.posts.MenuService;
+import com.moskhu.service.posts.OrderListService;
+import com.moskhu.service.posts.StatusService;
+import com.moskhu.web.dto.MenuListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,21 +17,37 @@ import java.util.*;
 @Controller
 public class MosController {
 
-    private final BasketRepository basketRepository;
+    private final BasketService basketService;
+    private final MenuService menuService;
+    private final OrderListService orderListService;
+    private final StatusService statusService;
+
     private final MenuRepository menuRepository;
-    private final OrderListRepository orderListRepository;
+    private final BasketRepository basketRepository;
 
-    @GetMapping("/") //홈 화면
-    public String home(Model model) {
-        List<Menu> menu = menuRepository.findAllDesc();
+    @GetMapping("/") //시작 화면
+    public String start(Model model){
+        if(statusService.existsById(1L)){//status 데이터 존재 여부
+            if(statusService.findById(1L).isOn_off())
+                return "start";
+            else
+                return "preparing";
+        }
+        else
+            return "preparing";
+    }
 
-        List<Menu> type1 = new ArrayList<>();
-        List<Menu> type2 = new ArrayList<>();
-        List<Menu> type3 = new ArrayList<>();
-        List<Menu> type4 = new ArrayList<>();
-        List<Menu> type5 = new ArrayList<>();
+    @GetMapping("/order") //주문 화면
+    public String order(Model model) {
+        List<MenuListResponseDto> menu = menuService.findAllDesc();
 
-        for(Menu m : menu) {
+        List<MenuListResponseDto> type1 = new ArrayList<>();
+        List<MenuListResponseDto> type2 = new ArrayList<>();
+        List<MenuListResponseDto> type3 = new ArrayList<>();
+        List<MenuListResponseDto> type4 = new ArrayList<>();
+        List<MenuListResponseDto> type5 = new ArrayList<>();
+
+        for(MenuListResponseDto m : menu) {
             switch(m.getMenuType())
             {
                 case 1:
@@ -54,7 +75,7 @@ public class MosController {
         model.addAttribute("type3", type3);
         model.addAttribute("type4", type4);
         model.addAttribute("type5", type5);
-        return "home";
+        return "order";
     }
 
     @GetMapping("/cart") //장바구니 화면
