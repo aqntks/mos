@@ -11,6 +11,8 @@ public class MenuListResponseDto {
     private String menuName;
     private Integer menuPrice;
     private String menuDescription;
+    private String menuImg;
+    private Integer menuType;
     private LocalDateTime modifiedDate;
 
     public MenuListResponseDto(Menu entity) {
@@ -19,6 +21,8 @@ public class MenuListResponseDto {
         this.menuName = entity.getMenuName();
         this.menuPrice = entity.getMenuPrice();
         this.menuDescription = entity.getMenuDescription();
+        this.menuImg = entity.getMenuImg();
+        this.menuType = entity.getMenuType();
         this.modifiedDate = entity.getModifiedDate();
     }
 }

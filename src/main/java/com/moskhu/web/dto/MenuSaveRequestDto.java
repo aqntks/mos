@@ -13,12 +13,17 @@ public class MenuSaveRequestDto {
     private String menuName;
     private Integer menuPrice;
     private String menuDescription;
+    private String menuImg;
+    private Integer menuType;
+
     @Builder
-    public MenuSaveRequestDto(String sellerId, String menuName, Integer menuPrice, String menuDescription){
+    public MenuSaveRequestDto(String sellerId, String menuName, Integer menuPrice, String menuDescription, String menuImg, Integer menuType){
         this.sellerId = sellerId;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.menuDescription = menuDescription;
+        this.menuImg = menuImg;
+        this.menuType = menuType;
     }
 
     public Menu toEntity(){
@@ -27,6 +32,8 @@ public class MenuSaveRequestDto {
                 .menuName(menuName)
                 .menuPrice(menuPrice)
                 .menuDescription(menuDescription)
+                .menuImg(menuImg)
+                .menuType(menuType)
                 .build();
     }
 }
