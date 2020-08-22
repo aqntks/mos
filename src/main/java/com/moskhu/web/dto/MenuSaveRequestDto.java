@@ -1,6 +1,5 @@
 package com.moskhu.web.dto;
 
-import com.moskhu.domain.posts.Basket;
 import com.moskhu.domain.posts.Menu;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +14,6 @@ public class MenuSaveRequestDto {
     private String menuDescription;
     private String menuImg;
     private Integer menuType;
-
     @Builder
     public MenuSaveRequestDto(String sellerId, String menuName, Integer menuPrice, String menuDescription, String menuImg, Integer menuType){
         this.sellerId = sellerId;
