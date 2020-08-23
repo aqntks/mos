@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Getter
 public class OrderListListResponseDto {
     private Long id;
-    private String consumerId;
+    private Integer consumerId;
     private Long MenuId;
     private LocalDateTime modifiedDate;
 

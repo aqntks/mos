@@ -8,4 +8,7 @@ public interface OrderListRepository extends JpaRepository<OrderList, Long>{
 
     @Query("SELECT o FROM OrderList o ORDER BY o.id DESC")
     List<OrderList> findAllDesc();
+
+    @Query("SELECT o FROM OrderList o ORDER BY o.consumerId ASC")
+    List<OrderList> findAllConsumerIdAsc();
 }

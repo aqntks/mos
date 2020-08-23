@@ -1,5 +1,6 @@
 package com.moskhu.domain.posts;
 
+import com.moskhu.web.dto.MenuResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

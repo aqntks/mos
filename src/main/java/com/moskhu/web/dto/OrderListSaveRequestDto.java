@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class OrderListSaveRequestDto {
-    private String consumerId;
+    private Integer consumerId;
     private Long menuId;
     @Builder
-    public OrderListSaveRequestDto(String consumerId, Long menuId){
+    public OrderListSaveRequestDto(Integer consumerId, Long menuId){
         this.consumerId = consumerId;
         this.menuId = menuId;
     }

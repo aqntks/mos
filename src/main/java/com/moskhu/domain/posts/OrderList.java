@@ -17,20 +17,20 @@ public class OrderList extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String consumerId;
+    @Column(nullable = false)
+    private Integer consumerId;
 
     @Column(nullable = false)
     private Long menuId;
 
 
     @Builder
-    public OrderList(String consumerId, Long menuId){
+    public OrderList(Integer consumerId, Long menuId){
         this.consumerId = consumerId;
         this.menuId = menuId;
     }
 
-    public void update(String consumerId, Long menuId){
+    public void update(Integer consumerId, Long menuId){
         this.consumerId = consumerId;
         this.menuId = menuId;
     }
