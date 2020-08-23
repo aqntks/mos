@@ -138,7 +138,7 @@
     <!-- New Flavors-->
     <section class="section section-xxl bg-default">
         <div class="container">
-            <h2 class="text-transform-capitalize wow fadeScale">메뉴</h2>
+            <h2 class="text-transform-capitalize wow fadeScale ordermenu">menu</h2>
             <div class="row row-lg row-30 row-lg-50">
                 {{#menu}}
                 <div class="col-sm-6 col-md-4 col-lg-3">
@@ -169,7 +169,7 @@
     <!-- Masonry Gallery-->
     <section class="section section-xxl bg-default">
         <div class="container">
-            <h2 class="text-transform-capitalize wow fadeScale">메뉴 한눈에 보기</h2>
+            <h2 class="text-transform-capitalize wow fadeScale viewmenu">view menu</h2>
             <div class="isotope-wrap">
                 <div class="isotope-filters">
                     <button class="isotope-filters-toggle button button-sm button-icon button-icon-right button-default-outline" data-custom-toggle=".isotope-filters-list" data-custom-toggle-disable-on-blur="true" data-custom-toggle-hide-on-blur="true"><span class="icon mdi mdi-chevron-down"></span>Filter</button>
@@ -197,7 +197,8 @@
                                     <h5 class="thumbnail-classic-title"><a href="single-product.html">{{menuName}}</a></h5>
                                     <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                     <div class="thumbnail-classic-button-wrap">
-                                        <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                        <!--<div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74" href="single-product.html"></a></div>-->
+                                        <div class="product-button thumbnail-classic-button"><a class="button  button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74" href="single-product.mustache" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                         <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="button_click({{menuId}})"></button></div>
                                     </div>
                                 </div>
