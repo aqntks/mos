@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface BasketRepository extends JpaRepository<Basket, Long>{
 
+    List<Basket> findByConsumerId(String consumerId);
+
     @Query("SELECT b FROM Basket b ORDER BY b.id DESC")
     List<Basket> findAllDesc();
 }

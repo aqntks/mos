@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class OrderListUpdateRequestDto {
-    private String consumerId;
+    private Integer consumerId;
     private Long menuId;
 
     @Builder
-    public OrderListUpdateRequestDto(String consumerId, Long menuId){
+    public OrderListUpdateRequestDto(Integer consumerId, Long menuId){
         this.consumerId = consumerId;
         this.menuId = menuId;
     }

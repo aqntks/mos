@@ -29,6 +29,16 @@ public class OrderListApiController {
         return id;
     }
 
+    @DeleteMapping("/api/v1/orderList/consumer/{consumerId}")
+    public Integer consumerDelete(@PathVariable Integer consumerId) {
+        List<OrderListListResponseDto> temp = orderListService.findAllConsumerIdAsc();
+        for(OrderListListResponseDto o : temp){
+            if(o.getConsumerId() == consumerId)
+                orderListService.delete(o.getId());
+        }
+        return consumerId;
+    }
+
     @GetMapping("/api/v1/orderList/{id}")
     public OrderListResponseDto findById(@PathVariable Long id) {
         return orderListService.findById(id);

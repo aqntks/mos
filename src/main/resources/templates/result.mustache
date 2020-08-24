@@ -36,9 +36,8 @@
     </div>
 </div>
 <div class="page">
-    <!-- Page Header-->
+    <!--상단 바 -->
     <header class="section page-header">
-        <!-- RD Navbar-->
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-creative rd-navbar-creative-2" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="100px" data-xl-stick-up-offset="112px" data-xxl-stick-up-offset="132px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
                 <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
@@ -46,22 +45,22 @@
                     <div class="rd-navbar-aside">
                         <div class="rd-navbar-collapse">
                             <ul class="contacts-classic">
-                                <li><span class="contacts-classic-title">Call us:</span> <a class="link" href="tel:#">+1 (844) 123 456 78</a>
+                                <li><span class="contacts-classic-title">Call us:</span> <a class="link" href="tel:#">010 - 1234 - 5678</a>
                                 </li>
-                                <li><a href="mailto:#">info@demolink.org</a></li>
+                                <li><a href="mailto:#">mos@skhu.ac.kr</a></li>
                             </ul><a class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202" href="#"><span>2</span></a>
                         </div>
                         <!-- RD Navbar Panel-->
                         <div class="rd-navbar-panel">
                             <!-- RD Navbar Toggle-->
                             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
-                            <!-- RD Navbar Brand-->
+                            <!-- 로고 -->
                             <div class="rd-navbar-brand">
-                                <!--Brand--><a class="brand" href="order"><img class="brand-logo-dark" src="images/logo-default-234x82.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117" height="41"/></a>
+                                <!--로고 이미지--><a class="brand" href="seller_start"><img class="brand-logo-dark" src="images/logo-default-234x82.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117" height="41"/></a>
                             </div>
                         </div>
                         <div class="rd-navbar-aside-element">
-                            <!-- RD Navbar Search-->
+                            <!-- 검색버튼 삭제 예정 -->
                             <div class="rd-navbar-search rd-navbar-search-2">
                                 <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3" data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
                                 <form class="rd-search" action="search-results.html" data-search-live="rd-search-results-live" method="GET">
@@ -73,7 +72,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <!-- RD Navbar Basket-->
+                            <!-- 장바구니 버튼 삭제 예정 -->
                             <div class="rd-navbar-basket-wrap">
                                 <button class="rd-navbar-basket fl-bigmug-line-shopping202" data-rd-navbar-toggle=".cart-inline"><span>2</span></button>
                                 <div class="cart-inline">
@@ -120,94 +119,56 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 언어 설정 버튼 삭제 예정 -->
                             <div class="rd-navbar-fixed-element-2 select-inline">
                                 <select data-dropdown-class="select-inline-dropdown">
-                                    <option value="ko">ko</option>
                                     <option value="en">en</option>
+                                    <option value="fr">fr</option>
+                                    <option value="es">es</option>
                                 </select>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="rd-navbar-main-outer">
-                    <div class="rd-navbar-main">
-                        <div class="rd-navbar-nav-wrap">
-                            <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="order">메뉴</a>
-                                </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="cart">장바구니</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
+    <!-- 페이지 소개 -->
     <section class="breadcrumbs-custom">
-        <div class="breadcrumbs-custom-footer">
-            <div class="container">
-                <h2 class="text-transform-capitalize breadcrumbs-custom-title">장바구니</h2>
+        <div class="parallax-container" data-parallax-img="images/bg-about.jpg">
+            <div class="breadcrumbs-custom-body parallax-content context-dark">
+                <div class="container">
+                    <h2 class="text-transform-capitalize breadcrumbs-custom-title">주문 내역</h2>
+                </div>
             </div>
         </div>
     </section>
-    <!-- Shopping Cart-->
-    <section class="section section-xl bg-default">
+    <!-- 주문 목록 -->
+    <section class="section section-xxl bg-default text-center">
         <div class="container">
-            <!-- shopping-cart-->
-            <div class="table-custom-responsive">
-                <table class="table-custom table-cart" id="cart_table">
-                    <thead>
-                    <tr>
-                        <th>메뉴</th>
-                        <th>가격</th>
-                        <th>수량</th>
-                        <th>합계</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{#basket}}
-                    <tr>
-                        <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-4-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">{{menuName}}</a></td>
-                        <td>{{menuPrice}}원</td>
-                        <td>
-                            <div class="table-cart-stepper">
-                                <input class="form-input" type="number" id="input-count" name="count" data-zeros="true" value="{{count}}" min="1" max="1000">
-                                <form>
-                                    <input type="hidden" id="id{{menuId}}" value="{{id}}">
-                                    <input type="hidden" id="consumerId{{menuId}}"  value="1">
-                                    <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
-                                </form>
+            <div class="row row-xl row-30 justify-content-center">
+                    <div class="col-sm-6 col-lg-4">
+                        <article class="pricing-classic">
+                            <div class="pricing-classic-header"><img class="pricing-classic-figure" src="images/pricing-1-346x229.jpg" alt="" width="346" height="229"/>
+                                <div class="pricing-classic-caption">
+                                    <div>
+                                        <h3 class="pricing-classic-title">주문번호 {{consumerId}}</h3>
+                                        <div class="pricing-classic-price-wrap">
+                                            <div class="pricing-classic-price heading-4">{{totalPrice}}원</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </td>
-                        <td>{{allCount}}원</td>
-                    </tr>
-                    {{/basket}}
-                    </tbody>
-                </table>
-            </div>
-            <div class="group-xl group-justify justify-content-center justify-content-md-between">
-                <div>
-                    <form class="rd-form rd-mailform rd-form-inline rd-form-coupon">
-                        <div class="form-wrap">
-                            <input class="form-input form-input-inverse" id="coupon-code" type="text" name="text">
-                            <label class="form-label" for="coupon-code">Coupon code</label>
-                        </div>
-                        <div class="form-button">
-                            <button class="button button-lg button-secondary button-zakaria" type="submit">Apply</button>
-                        </div>
-                    </form>
-                </div>
-                <div>
-                    <div class="group-xl group-middle">
-                        <div>
-                            <div class="group-md group-middle">
-                                <div class="heading-5 font-weight-medium text-gray-500">합계</div>
-                                <div class="heading-3 font-weight-normal">{{totalPrice}}원</div>
+                            <div class="pricing-classic-body">
+                                <ul class="pricing-classic-list">
+                                    {{#menu}}
+                                        <li><span>{{menuName}}</span> {{count}}</li>
+                                    {{/menu}}
+                                </ul>
+                                <button class="button button-lg button-secondary button-zakaria">{{status}}</button>
                             </div>
-                        </div><a class="button button-lg button-primary button-zakaria" href="result">결제</a>
+                        </article>
                     </div>
-                </div>
             </div>
         </div>
     </section>
@@ -223,6 +184,6 @@
 <div class="snackbars" id="form-output-global"></div>
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
-<script src="app/cart.js"></script>
+<script src="app/result.js"></script>
 </body>
 </html>

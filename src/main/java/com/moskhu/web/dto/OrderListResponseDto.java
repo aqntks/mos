@@ -7,7 +7,7 @@ import lombok.Getter;
 public class OrderListResponseDto {
 
     private Long id;
-    private String consumerId;
+    private Integer consumerId;
     private Long MenuId;
 
     public OrderListResponseDto(OrderList entity){

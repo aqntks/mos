@@ -55,4 +55,11 @@ public class OrderListService {
                 .map(OrderListListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<OrderListListResponseDto> findAllConsumerIdAsc() {
+        return orderListRepository.findAllConsumerIdAsc().stream()
+                .map(OrderListListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }

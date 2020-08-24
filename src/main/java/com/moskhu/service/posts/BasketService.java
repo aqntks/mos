@@ -52,4 +52,11 @@ public class BasketService {
                 .map(BasketListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<BasketListResponseDto> findByConsumerId(String consumerId) {
+        return basketRepository.findByConsumerId(consumerId).stream()
+                .map(BasketListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
