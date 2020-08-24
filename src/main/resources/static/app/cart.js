@@ -1,3 +1,4 @@
+/*
 $("#input-count").on('mouseover', function(){
     console.log("Saving value " + $(this).val());
     $(this).data('val', $(this).val());
@@ -51,3 +52,4 @@ $("#input-count").on('change', function(){
     }
     else{}
 });
+*/

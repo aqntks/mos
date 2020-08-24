@@ -5,14 +5,13 @@ import com.moskhu.service.posts.BasketService;
 import com.moskhu.service.posts.MenuService;
 import com.moskhu.service.posts.OrderListService;
 import com.moskhu.service.posts.StatusService;
-import com.moskhu.web.dto.MenuListResponseDto;
-import com.moskhu.web.dto.MenuResponseDto;
-import com.moskhu.web.dto.OrderListListResponseDto;
+import com.moskhu.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
@@ -114,6 +113,40 @@ public class MosController {
         model.addAttribute("basket", list);
         model.addAttribute("totalPrice", totalPrice);
         return "cart";
+    }
+
+    @GetMapping("/payment") //결제 화면
+    public String payment(Model model) {
+        return "payment";
+    }
+
+    @GetMapping("/result") //결과 화면
+    public String result(Model model) {
+        List<BasketListResponseDto> basket = basketService.findByConsumerId("1");
+        ArrayList<MenuResponseDto> list = new ArrayList<>();
+        List<MenuCountCheck> result;
+        int totalPrice = 0;
+        String s = "조리중";
+
+        for(BasketListResponseDto b : basket)
+            list.add(menuService.findById(b.getMenuId()));
+
+        result = countCheck(list);
+
+        //총액
+        for(MenuCountCheck mc : result)
+            totalPrice += mc.getCount() * mc.getMenuPrice();
+
+        //저장
+        for(BasketListResponseDto b : basket)
+            orderListService.save(new OrderListSaveRequestDto(Integer.parseInt(b.getConsumerId()), b.getMenuId()));
+
+
+        model.addAttribute("menu", result);
+        model.addAttribute("consumerId", 1);
+        model.addAttribute("status", s);
+        model.addAttribute("totalPrice", totalPrice);
+        return "result";
     }
 
     ////////////////////////////////////////////////////////////////////////////// 판매자
