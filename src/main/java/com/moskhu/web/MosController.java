@@ -1,5 +1,9 @@
 package com.moskhu.web;
 
+import com.moskhu.config.auth.dto.SessionUser;
+import com.moskhu.domain.cls.ConsumerOrder;
+import com.moskhu.domain.cls.MenuCount;
+import com.moskhu.domain.cls.MenuCountCheck;
 import com.moskhu.domain.posts.*;
 import com.moskhu.service.posts.BasketService;
 import com.moskhu.service.posts.MenuService;
@@ -11,9 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -27,6 +30,8 @@ public class MosController {
 
     private final MenuRepository menuRepository;
     private final BasketRepository basketRepository;
+
+    private final HttpSession httpSession;
 
 
 
@@ -190,6 +195,17 @@ public class MosController {
     }
 
     ////////////////////////////////////////////////////////////////////////////// 판매자
+
+    @GetMapping("/seller_login") //판매자 로그인 화면
+    public String seller_login(Model model){
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if (user != null){
+            model.addAttribute("userName", user.getName());
+        }
+
+        return "seller_login";
+    }
 
     @GetMapping("/seller_start") //판매자 시작 화면
     public String seller_start(Model model){
