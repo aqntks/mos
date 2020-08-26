@@ -28,7 +28,10 @@ public class MosController {
     private final MenuRepository menuRepository;
     private final BasketRepository basketRepository;
 
-
+    @GetMapping("/single_product") //상품 정보 화면
+    public String single_product(Model model) {
+        return "single_product";
+    }
 
     @GetMapping("/") //시작 화면
     public String start(Model model) {
@@ -40,47 +43,6 @@ public class MosController {
         } else
             return "preparing";
     }
-
-    /*@GetMapping("/home") //홈 화면
-    public String home(Model model) {
-        List<MenuListResponseDto> menu = menuService.findAllDesc();
-
-        List<MenuListResponseDto> type1 = new ArrayList<>();
-        List<MenuListResponseDto> type2 = new ArrayList<>();
-        List<MenuListResponseDto> type3 = new ArrayList<>();
-        List<MenuListResponseDto> type4 = new ArrayList<>();
-        List<MenuListResponseDto> type5 = new ArrayList<>();
-
-        for (MenuListResponseDto m : menu) {
-            switch (m.getMenuType()) {
-                case 1:
-                    type1.add(m);
-                    break;
-                case 2:
-                    type2.add(m);
-                    break;
-                case 3:
-                    type3.add(m);
-                    break;
-                case 4:
-                    type4.add(m);
-                    break;
-                case 5:
-                    type5.add(m);
-                    break;
-                default:
-            }
-        }
-
-
-      model.addAttribute("menu", menu);
-        model.addAttribute("type1", type1);
-        model.addAttribute("type2", type2);
-        model.addAttribute("type3", type3);
-        model.addAttribute("type4", type4);
-        model.addAttribute("type5", type5);
-        return "home";
-    }*/
 
     @GetMapping("/order") //주문 화면
     public String order(Model model) {
