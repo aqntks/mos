@@ -57,8 +57,8 @@
                             </div>
                         </div>
                         <div class="rd-navbar-aside-element">
-                            <!-- RD Navbar Search-->
-                            <div class="rd-navbar-search rd-navbar-search-2">
+                            <!-- 오른쪽 상단 검색버튼-->
+                            <!-- <div class="rd-navbar-search rd-navbar-search-2">
                                 <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3" data-rd-navbar-toggle=".rd-navbar-search"><img src="images/search_btn.png"></button>
                                 <form class="rd-search" action="search-results.html" data-search-live="rd-search-results-live" method="GET">
                                     <div class="form-wrap">
@@ -68,8 +68,8 @@
                                         <button class="rd-search-form-submit fl-bigmug-line-search74" type="submit"></button>
                                     </div>
                                 </form>
-                            </div>
-                            <!-- RD Navbar Basket-->
+                            </div> -->
+                            <!-- 오른쪽 상단 간편장바구니 버튼-->
                             <div class="rd-navbar-basket-wrap">
                                 <button class="rd-navbar-basket fl-bigmug-line-shopping202" data-rd-navbar-toggle=".cart-inline"><span>2</span></button>
                                 <div class="cart-inline">
@@ -130,46 +130,17 @@
                             </ul>
                         </div>
                     </div>
+                    <!--<div class="">
+                        <h2 class="text-transform-capitalize wow fadeScale">menu</h2>
+                    </div>-->
                 </div>
             </nav>
         </div>
     </header>
-
-    <!-- New Flavors-->
+    <!-- 메뉴리스트 -->
     <section class="section section-xxl bg-default">
         <div class="container">
-            <h2 class="text-transform-capitalize wow fadeScale ordermenu">menu</h2>
-            <div class="row row-lg row-30 row-lg-50">
-                {{#menu}}
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <!-- Product-->
-                    <article class="product wow fadeInLeft">
-                        <div class="product-body">
-                            <div class="product-figure"><img src="images/달고나라떼.jpg" alt="" width="196" height="134"/>
-                            </div>
-                            <h5 class="product-title"><a href="single_product">{{menuName}}</a></h5>
-                            <div class="product-price-wrap">
-                                <div class="product-price">{{menuPrice}}원</div>
-                            </div>
-                        </div>
-                        <div class="product-button-wrap">
-                            <div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74" href="single_product"></a></div>
-                            <form name="basket{{menuId}}">
-                                <input type="hidden" id="consumerId{{menuId}}"  value="1">
-                                <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
-                            </form>
-                            <div class="product-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" id="btn-basket-add{{menuId}}" onclick="button_click({{menuId}})"></button></div>
-                        </div>
-                    </article>
-                </div>
-                {{/menu}}
-            </div>
-        </div>
-    </section>
-    <!-- Masonry Gallery-->
-    <section class="section section-xxl bg-default">
-        <div class="container">
-            <h2 class="text-transform-capitalize wow fadeScale viewmenu">view menu</h2>
+            <h2 class="text-transform-capitalize wow fadeScale">menu</h2>
             <div class="isotope-wrap">
                 <div class="isotope-filters">
                     <button class="isotope-filters-toggle button button-sm button-icon button-icon-right button-default-outline" data-custom-toggle=".isotope-filters-list" data-custom-toggle-disable-on-blur="true" data-custom-toggle-hide-on-blur="true"><span class="icon mdi mdi-chevron-down"></span>Filter</button>
@@ -197,8 +168,8 @@
                                     <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                     <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                     <div class="thumbnail-classic-button-wrap">
-                                        <!--<div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74" href="single-product.html"></a></div>-->
-                                        <div class="product-button thumbnail-classic-button"><a class="button  button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74" href="single_product" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                        <!--<div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74" href="single-product.html"></a></div>--> <!--상세페이지 이동 버튼-->
+                                        <div class="product-button thumbnail-classic-button"><a class="button button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74 blur" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                         <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="button_click({{menuId}})"></button></div>
                                     </div>
                                 </div>
@@ -217,7 +188,8 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item">
+                                                <img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="button_click({{menuId}})"></button></div>
                                         </div>
                                     </div>
@@ -288,28 +260,6 @@
     </section>
     <!-- Page Footer-->
     <footer class="section footer-modern footer-modern-2">
-        <div class="footer-modern-body section-xl context-dark">
-            <div class="container">
-                <div class="row row-40 row-md-50 justify-content-xl-between">
-                    <div class="col-sm-6 col-md-7 col-lg-5 wow fadeInRight" data-wow-delay=".1s">
-                        <h5 class="footer-modern-title">Quick Links</h5>
-                        <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
-                            <li><a href="our-team.html">Our Team</a></li>
-                            <li><a href="grid-shop.html">New Products</a></li>
-                            <li><a href="blog-list.html">Blog</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="contact-us.html">Contact Us</a></li>
-                            <li><a href="#">Smoothies</a></li>
-                            <li><a href="#">Energy Bowls</a></li>
-                            <li><a href="#">Juices</a></li>
-                            <li><a href="#">Ingredients</a></li>
-                            <li><a href="#">Delivery</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="footer-modern-panel text-center">
             <div class="container">
                 <p class="rights"><span>&copy;&nbsp; </span><span class="copyright-year"></span><span>&nbsp;</span><span>MOS</span><span>.&nbsp; All rights reserved.</span><span>&nbsp;</span><a href="privacy-policy.html">Privacy Policy</a><span>.</span></p>
