@@ -41,6 +41,7 @@
         <!-- RD Navbar-->
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-creative rd-navbar-creative-2" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="100px" data-xl-stick-up-offset="112px" data-xxl-stick-up-offset="132px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+                <!-- 오른쪽 상단 ...버튼 -->
                 <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
                 <div class="rd-navbar-aside-outer">
                     <div class="rd-navbar-aside">
@@ -49,16 +50,17 @@
                         </div>
                         <!-- RD Navbar Panel-->
                         <div class="rd-navbar-panel">
-                            <!-- RD Navbar Toggle-->
+                            <!-- 모바일 사이드메뉴바-->
                             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                             <!-- RD Navbar Brand-->
                             <div class="rd-navbar-brand">
-                                <!--Brand--><a class="brand" href="order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="150" height="60"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
+                                <!--로고-->
+                                <a class="brand" href="order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="150" height="60"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
                             </div>
                         </div>
                         <div class="rd-navbar-aside-element">
                             <!-- 오른쪽 상단 검색버튼-->
-                            <!-- <div class="rd-navbar-search rd-navbar-search-2">
+                           <!-- <div class="rd-navbar-search rd-navbar-search-2">
                                 <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3" data-rd-navbar-toggle=".rd-navbar-search"><img src="images/search_btn.png"></button>
                                 <form class="rd-search" action="search-results.html" data-search-live="rd-search-results-live" method="GET">
                                     <div class="form-wrap">
@@ -68,7 +70,7 @@
                                         <button class="rd-search-form-submit fl-bigmug-line-search74" type="submit"></button>
                                     </div>
                                 </form>
-                            </div> -->
+                             </div> -->
                             <!-- 오른쪽 상단 간편장바구니 버튼-->
                             <div class="rd-navbar-basket-wrap">
                                 <button class="rd-navbar-basket fl-bigmug-line-shopping202" data-rd-navbar-toggle=".cart-inline"><span>2</span></button>
@@ -130,9 +132,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!--<div class="">
-                        <h2 class="text-transform-capitalize wow fadeScale">menu</h2>
-                    </div>-->
                 </div>
             </nav>
         </div>
@@ -158,24 +157,24 @@
 
                 <div class="row row-30 isotope isotope-custom-1" data-lightgallery="group">
                     {{#type1}}
-                    <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 1">
-                        <!-- Thumbnail Classic-->
-                        <article class="thumbnail-classic block-1">
-                            <div class="thumbnail-classic-figure"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/>
-                            </div>
-                            <div class="thumbnail-classic-caption">
-                                <div>
-                                    <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
-                                    <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
-                                    <div class="thumbnail-classic-button-wrap">
-                                        <!--<div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74" href="single-product.html"></a></div>--> <!--상세페이지 이동 버튼-->
-                                        <div class="product-button thumbnail-classic-button"><a class="button button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74 blur" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
-                                        <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="button_click({{menuId}})"></button></div>
+                        <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 1">
+                            <!-- Thumbnail Classic-->
+                            <article class="thumbnail-classic block-1">
+                                <div class="thumbnail-classic-figure"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/>
+                                </div>
+                                <div class="thumbnail-classic-caption">
+                                    <div>
+                                        <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
+                                        <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
+                                        <div class="thumbnail-classic-button-wrap">
+                                            <!--<div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74" href="single-product.html"></a></div>--> <!--상세페이지 이동 버튼-->
+                                            <div class="product-button thumbnail-classic-button"><a class="button button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74 blur" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="button_click({{menuId}})"></button></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     {{/type1}}
                     {{#type2}}
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 2">
