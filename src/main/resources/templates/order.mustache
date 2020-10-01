@@ -51,7 +51,7 @@
                         <!-- RD Navbar Panel-->
                         <div class="rd-navbar-panel">
                             <!-- 모바일 사이드메뉴바-->
-                            <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                            <!--<button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>-->
                             <!-- RD Navbar Brand-->
                             <div class="rd-navbar-brand">
                                 <!--로고-->
@@ -123,14 +123,14 @@
                 </div>
                 <div class="rd-navbar-main-outer">
                     <div class="rd-navbar-main">
-                        <div class="rd-navbar-nav-wrap">
+                        <!--<div class="rd-navbar-nav-wrap">-->
                             <ul class="rd-navbar-nav">
                                 <li class="rd-nav-item"><a class="rd-nav-link" href="order">메뉴</a>
                                 </li>
                                 <li class="rd-nav-item"><a class="rd-nav-link" href="cart">장바구니</a>
                                 </li>
                             </ul>
-                        </div>
+                        <!--</div>-->
                     </div>
                 </div>
             </nav>
@@ -155,8 +155,14 @@
                     </div>
                 </div>
 
+
                 <div class="row row-30 isotope isotope-custom-1" data-lightgallery="group">
                     {{#type1}}
+                        <form>
+                            <input type="hidden" id="consumerId{{menuId}}"  value="1">
+                            <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
+                        </form>
+
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 1">
                             <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
@@ -177,6 +183,10 @@
                         </div>
                     {{/type1}}
                     {{#type2}}
+                        <form>
+                            <input type="hidden" id="consumerId{{menuId}}"  value="1">
+                            <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
+                        </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 2">
                             <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
@@ -197,6 +207,10 @@
                         </div>
                     {{/type2}}
                     {{#type3}}
+                        <form>
+                            <input type="hidden" id="consumerId{{menuId}}"  value="1">
+                            <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
+                        </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 3">
                             <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
@@ -216,6 +230,10 @@
                         </div>
                     {{/type3}}
                     {{#type4}}
+                        <form>
+                            <input type="hidden" id="consumerId{{menuId}}"  value="1">
+                            <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
+                        </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 4">
                             <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
@@ -235,6 +253,10 @@
                         </div>
                     {{/type4}}
                     {{#type5}}
+                        <form>
+                            <input type="hidden" id="consumerId{{menuId}}"  value="1">
+                            <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
+                        </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 5">
                             <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
