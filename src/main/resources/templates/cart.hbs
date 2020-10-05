@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+
 </head>
 <body>
 <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -108,7 +109,7 @@
                                                             <div class="table-cart-stepper">
                                                                 <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000"/>
                                                             </div>
-                                                            <h6 class="cart-inline-title">$16.00</h6>
+                                                            <h6 class="cart-inline-title"></h6>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,7 +156,8 @@
     <section class="section section-xl bg-default">
         <div class="container">
             <!-- shopping-cart-->
-            <div class="table-custom-responsive">
+            <div class="table-custom-responsive" id="basket">
+                <script id="template" type="text/x-handlebars-template">
                 <table class="table-custom table-cart" id="cart_table">
                     <thead>
                     <tr>
@@ -166,25 +168,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{#basket}}
+                    \{{#each menu}}
                     <tr>
-                        <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-4-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">{{menuName}}</a></td>
-                        <td>{{menuPrice}}원</td>
+                        <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-4-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">\{{name}}</a></td>
+                        <td>\{{price}}원</td>
                         <td>
                             <div class="table-cart-stepper">
-                                <input class="form-input" type="number" id="input-count" name="count" data-zeros="true" value="{{count}}" min="1" max="1000">
-                                <form>
-                                    <input type="hidden" id="id{{menuId}}" value="{{id}}">
-                                    <input type="hidden" id="consumerId{{menuId}}"  value="1">
-                                    <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
-                                </form>
+                                <input class="form-input" type="number" id="input-count" name="count" data-zeros="true" value="\{{count}}" min="1" max="1000">
                             </div>
                         </td>
-                        <td>{{allCount}}원</td>
+                        <td>\{{allCount}}원</td>
                     </tr>
-                    {{/basket}}
+                    \{{/each}}
                     </tbody>
                 </table>
+                </script>
             </div>
             <div class="group-xl group-justify justify-content-center justify-content-md-between">
                 <div>
@@ -201,9 +199,10 @@
                 <div>
                     <div class="group-xl group-middle">
                         <div>
-                            <div class="group-md group-middle">
+                            <div class="group-md group-middle" >
                                 <div class="heading-5 font-weight-medium text-gray-500">합계</div>
-                                <div class="heading-3 font-weight-normal">{{totalPrice}}원</div>
+                                <div class="heading-3 font-weight-normal" id="total">
+                                    <script id="totalTem" type="text/x-handlebars-template">\{{total}}원</script></div>
                             </div>
                         </div><a class="button button-lg button-primary button-zakaria" href="result">결제</a>
                     </div>
@@ -221,8 +220,37 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
 <script src="app/cart.js"></script>
+<script src="js/mustache.min.js"></script>
+<script type="text/javascript">
+    var source = $("#template").html();
+    var template = Handlebars.compile(source);
+    source = $("#totalTem").html();
+    var totalTem = Handlebars.compile(source);
+
+
+    var menuArray = new Array();
+    var totalCount = 0;
+
+    for(var i = 0; i < sessionStorage.length; i++){
+        menuArray[i] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
+        menuArray[i].allCount = parseInt(menuArray[i].price) * parseInt(menuArray[i].count);
+        totalCount += menuArray[i].allCount;
+    }
+
+     var data = {
+        menu: menuArray
+    }
+    var tot = {
+        total: totalCount
+    }
+
+    $('#basket').append(template(data));
+    $('#total').append(totalTem(tot));
+</script>
 </body>
 </html>
