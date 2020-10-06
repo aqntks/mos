@@ -4,16 +4,19 @@ import com.moskhu.domain.cls.ConsumerOrder;
 import com.moskhu.domain.cls.MenuCount;
 import com.moskhu.domain.cls.MenuCountCheck;
 import com.moskhu.domain.posts.*;
-import com.moskhu.service.posts.BasketService;
-import com.moskhu.service.posts.MenuService;
-import com.moskhu.service.posts.OrderListService;
-import com.moskhu.service.posts.StatusService;
+import com.moskhu.service.posts.*;
 import com.moskhu.web.dto.*;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.parser.JSONParser;
+
+import org.json.simple.parser.ParseException;
+import org.apache.tomcat.util.digester.ArrayStack;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
@@ -24,10 +27,8 @@ public class MosController {
     private final BasketService basketService;
     private final MenuService menuService;
     private final OrderListService orderListService;
+    private final OrderMenuService orderMenuService;
     private final StatusService statusService;
-
-    private final MenuRepository menuRepository;
-    private final BasketRepository basketRepository;
 
     @GetMapping("/") //시작 화면
     public String start(Model model) {
@@ -91,32 +92,24 @@ public class MosController {
         return "payment";
     }
 
-    @GetMapping("/result") //결과 화면
-    public String result(Model model) {
-        List<BasketListResponseDto> basket = basketService.findByConsumerId("1");
-        ArrayList<MenuResponseDto> list = new ArrayList<>();
-        List<MenuCountCheck> result;
-        int totalPrice = 0;
-        String s = "조리중";
+    @GetMapping("/payment_success") //결제 성공
+    public String payment_success(Model model) {
+        return "payment_success";
+    }
 
-        for(BasketListResponseDto b : basket)
-            list.add(menuService.findById(b.getMenuId()));
+    @GetMapping("/result/{id}") //결과 화면
+    public String result(Model model, @PathVariable Long id) throws ParseException {
+        OrderMenuResponseDto om = orderMenuService.findById(id);
+        List<JSONObject> list = new ArrayList<>();
+        JSONParser parser = new JSONParser();
 
-        result = countCheck(list);
+        for(String s : om.getMenus())
+            list.add((JSONObject) parser.parse(s));
 
-        //총액
-        for(MenuCountCheck mc : result)
-            totalPrice += mc.getCount() * mc.getMenuPrice();
-
-        //저장
-        for(BasketListResponseDto b : basket)
-            orderListService.save(new OrderListSaveRequestDto(Integer.parseInt(b.getConsumerId()), b.getMenuId()));
-
-
-        model.addAttribute("menu", result);
-        model.addAttribute("consumerId", 1);
-        model.addAttribute("status", s);
-        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("menus", list);
+        model.addAttribute("total", om.getTotal());
+        model.addAttribute("id", id);
+        model.addAttribute("status", "조리중");
         return "result";
     }
 
