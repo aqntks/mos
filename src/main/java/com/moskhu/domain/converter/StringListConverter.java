@@ -1,8 +1,7 @@
-package com.moskhu.domain.posts;
+package com.moskhu.domain.converter;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

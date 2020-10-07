@@ -1,6 +1,7 @@
 package com.moskhu.domain.posts;
 
 import com.moskhu.domain.BaseTimeEntity;
+import com.moskhu.domain.converter.StringListConverter;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

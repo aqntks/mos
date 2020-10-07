@@ -153,7 +153,7 @@
             </div>
             <div class="title-group">
                 <h3 class="text-capitalize">주문 목록</h3>
-                <p class="text-width-large">Please check the orderMenu list here.</p>
+                <p class="text-width-large">Please check the order list here.</p>
             </div>
             <div class="row row-xl row-30 justify-content-center">
                 {{#orderMenu}}
@@ -162,21 +162,21 @@
                         <div class="pricing-classic-header"><img class="pricing-classic-figure" src="images/pricing-1-346x229.jpg" alt="" width="346" height="229"/>
                             <div class="pricing-classic-caption">
                                 <div>
-                                    <h3 class="pricing-classic-title">주문번호 {{consumerId}}</h3>
+                                    <h3 class="pricing-classic-title">주문번호 {{id}}</h3>
                                     <div class="pricing-classic-price-wrap">
-                                        <div class="pricing-classic-price heading-4">{{allCount}}원</div>
+                                        <div class="pricing-classic-price heading-4">{{total}}원</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="pricing-classic-body">
                             <ul class="pricing-classic-list">
-                                {{#menu}}
-                                <li><span>{{menuName}}</span> {{count}}</li>
-                                {{/menu}}
+                                {{#menus}}
+                                <li><span>{{name}}</span> {{count}}</li>
+                                {{/menus}}
                             </ul>
-                            <button class="button button-lg button-default-outline button-zakaria" onclick="delete_order({{consumerId}})">주문 취소</button>
-                            <button class="button button-lg button-default-outline button-zakaria" onclick="finish_order({{consumerId}})">조리 완료</button>
+                            <button class="button button-lg button-default-outline button-zakaria" onclick="delete_order({{id}})">주문 취소</button>
+                            <button class="button button-lg button-default-outline button-zakaria" onclick="finish_order({{id}})">조리 완료</button>
                         </div>
                     </article>
                 </div>

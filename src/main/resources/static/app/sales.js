@@ -1,7 +1,7 @@
-function delete_order(consumerId) {
+function delete_order(id) {
             $.ajax({
                 type: 'DELETE',
-                url: '/api/v1/orderList/consumer/'+consumerId,
+                url: '/api/v1/orderMenu/'+id,
                 dataType: 'json',
                 contentType:'application/json; charset=utf-8'
             }).done(function() {
@@ -12,10 +12,10 @@ function delete_order(consumerId) {
             });
 }
 
-function finish_order(consumerId) {
+function finish_order(id) {
             $.ajax({
                 type: 'DELETE',
-                url: '/api/v1/orderList/consumer/'+consumerId,
+                url: '/api/v1/orderMenu/'+id,
                 dataType: 'json',
                 contentType:'application/json; charset=utf-8'
             }).done(function() {

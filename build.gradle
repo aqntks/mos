@@ -35,9 +35,14 @@ dependencies{
     compile('org.mariadb.jdbc:mariadb-java-client')
     compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+    compile('org.springframework.boot:spring-boot-starter-websocket')
+    compile("org.webjars:sockjs-client:1.1.2")
+    compile("org.webjars:stomp-websocket:2.3.3")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'junit', name: 'junit', version: '4.12'
     annotationProcessor('org.projectlombok:lombok')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
     //implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
     //implementation 'com.amazonaws:aws-java-sdk-s3'
 }

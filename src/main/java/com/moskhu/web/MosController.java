@@ -30,6 +30,11 @@ public class MosController {
     private final OrderMenuService orderMenuService;
     private final StatusService statusService;
 
+    @GetMapping("/socket_test")
+    public String socket_test(Model model){
+        return "socket_test";
+    }
+
     @GetMapping("/") //시작 화면
     public String start(Model model) {
         if (statusService.existsById(1L)) {//status 데이터 존재 여부
@@ -121,45 +126,13 @@ public class MosController {
     }
 
     @GetMapping("/sales") //판매 화면
-    public String sales(Model model){
-        List<OrderListListResponseDto> list = orderListService.findAllConsumerIdAsc();
-        List<ArrayList<MenuResponseDto>> temp = new ArrayList<>();
-        Set<Integer> orderCount = new TreeSet<>();
-        Map<Integer, Integer> index = new TreeMap<>();
-        List<ConsumerOrder> consumerOrder = new ArrayList<>();
+    public String sales(Model model) throws ParseException {
+        List<OrderMenuListResponseDto> list = orderMenuService.findAllDesc();
+        List<OrderMenuListJsonDto> jList = new ArrayList<>();
+        for(OrderMenuListResponseDto o : list)
+            jList.add(new OrderMenuListJsonDto(o));
 
-        //주문 갯수 파악
-        for(OrderListListResponseDto o : list)
-            orderCount.add(o.getConsumerId());
-
-        //주문자id 인덱스 파악을 위한 map
-        int i = 0;
-        for(Integer count : orderCount) {
-            index.put(count, i);
-            i++;
-        }
-
-        //주문 갯수 만큼 list 생성 -> temp에 저장
-        for(Integer count : orderCount)
-            temp.add(new ArrayList<>());
-
-
-        //고객 별 주문을 temp 내 arrayList에 각각 저장
-        for(OrderListListResponseDto o : list){
-            for(Integer count : orderCount){
-                if(count == o.getConsumerId()){
-                    temp.get(index.get(count)).add(menuService.findById(o.getMenuId()));
-                    break;
-                }
-            }
-        }
-        //ConsumerOrder 리스트에 consumerOrder 정보 저장
-        for(Integer count : orderCount) 
-            consumerOrder.add(new ConsumerOrder(count, countCheck(temp.get(index.get(count)))));
-
-        //주문 정보
-        model.addAttribute("order", consumerOrder);
-
+        model.addAttribute("orderMenu", jList);
         //판매 상태 출력
         String str = "";
         if(statusService.existsById(1L)){//status 데이터 존재 여부
