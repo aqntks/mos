@@ -1,4 +1,4 @@
-function button_click(num) {
+function add_basket(num) {
     var data = {
         consumerId: $('#consumerId' + num).val(),
         menuId: $('#menuId' + num).val()

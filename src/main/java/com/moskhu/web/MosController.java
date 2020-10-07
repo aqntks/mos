@@ -1,18 +1,22 @@
 package com.moskhu.web;
 
+import com.moskhu.domain.cls.ConsumerOrder;
+import com.moskhu.domain.cls.MenuCount;
+import com.moskhu.domain.cls.MenuCountCheck;
 import com.moskhu.domain.posts.*;
-import com.moskhu.service.posts.BasketService;
-import com.moskhu.service.posts.MenuService;
-import com.moskhu.service.posts.OrderListService;
-import com.moskhu.service.posts.StatusService;
+import com.moskhu.service.posts.*;
 import com.moskhu.web.dto.*;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.parser.JSONParser;
+
+import org.json.simple.parser.ParseException;
+import org.apache.tomcat.util.digester.ArrayStack;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
@@ -23,15 +27,13 @@ public class MosController {
     private final BasketService basketService;
     private final MenuService menuService;
     private final OrderListService orderListService;
+    private final OrderMenuService orderMenuService;
     private final StatusService statusService;
 
     private final MenuRepository menuRepository;
     private final BasketRepository basketRepository;
 
-    @GetMapping("/single_product") //상품 정보 화면
-    public String single_product(Model model) {
-        return "single_product";
-    }
+
 
     @GetMapping("/") //시작 화면
     public String start(Model model) {
@@ -87,33 +89,6 @@ public class MosController {
 
     @GetMapping("/cart") //장바구니 화면
     public String cart(Model model) {
-        List<Basket> basket = basketRepository.findAllDesc();
-        List<MenuCount> list = new ArrayList<>();
-        //List 저장 인덱스 확인용
-        Map<String, Integer> check = new TreeMap<>();
-        int index = 0;
-        int totalPrice = 0;
-
-        for(Basket b : basket) {
-            Optional<Menu> menu = menuRepository.findById(b.getMenuId());
-            //이미 존재하는 경우
-            if(check.containsKey(menu.get().getMenuName())) {
-                list.set(check.get(menu.get().getMenuName()), new MenuCount(menu.get().getMenuName(), menu.get().getMenuPrice(), list.get(check.get(menu.get().getMenuName())).getCount()+1, b));
-
-            }
-            //아닌 경우
-            else{
-                check.put(menu.get().getMenuName(), index++);
-                list.add(new MenuCount(menu.get().getMenuName(), menu.get().getMenuPrice(), 1, b));
-            }
-        }
-
-        //총액
-        for(MenuCount mc : list)
-            totalPrice += mc.getAllCount();
-
-        model.addAttribute("basket", list);
-        model.addAttribute("totalPrice", totalPrice);
         return "cart";
     }
 
@@ -122,32 +97,24 @@ public class MosController {
         return "payment";
     }
 
-    @GetMapping("/result") //결과 화면
-    public String result(Model model) {
-        List<BasketListResponseDto> basket = basketService.findByConsumerId("1");
-        ArrayList<MenuResponseDto> list = new ArrayList<>();
-        List<MenuCountCheck> result;
-        int totalPrice = 0;
-        String s = "조리중";
+    @GetMapping("/payment_success") //결제 성공
+    public String payment_success(Model model) {
+        return "payment_success";
+    }
 
-        for(BasketListResponseDto b : basket)
-            list.add(menuService.findById(b.getMenuId()));
+    @GetMapping("/result/{id}") //결과 화면
+    public String result(Model model, @PathVariable Long id) throws ParseException {
+        OrderMenuResponseDto om = orderMenuService.findById(id);
+        List<JSONObject> list = new ArrayList<>();
+        JSONParser parser = new JSONParser();
 
-        result = countCheck(list);
+        for(String s : om.getMenus())
+            list.add((JSONObject) parser.parse(s));
 
-        //총액
-        for(MenuCountCheck mc : result)
-            totalPrice += mc.getCount() * mc.getMenuPrice();
-
-        //저장
-        for(BasketListResponseDto b : basket)
-            orderListService.save(new OrderListSaveRequestDto(Integer.parseInt(b.getConsumerId()), b.getMenuId()));
-
-
-        model.addAttribute("menu", result);
-        model.addAttribute("consumerId", 1);
-        model.addAttribute("status", s);
-        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("menus", list);
+        model.addAttribute("total", om.getTotal());
+        model.addAttribute("id", id);
+        model.addAttribute("status", "조리중");
         return "result";
     }
 
@@ -159,45 +126,13 @@ public class MosController {
     }
 
     @GetMapping("/sales") //판매 화면
-    public String sales(Model model){
-        List<OrderListListResponseDto> list = orderListService.findAllConsumerIdAsc();
-        List<ArrayList<MenuResponseDto>> temp = new ArrayList<>();
-        Set<Integer> orderCount = new TreeSet<>();
-        Map<Integer, Integer> index = new TreeMap<>();
-        List<ConsumerOrder> consumerOrder = new ArrayList<>();
+    public String sales(Model model) throws ParseException {
+        List<OrderMenuListResponseDto> list = orderMenuService.findAllDesc();
+        List<OrderMenuListJsonDto> jList = new ArrayList<>();
+        for(OrderMenuListResponseDto o : list)
+            jList.add(new OrderMenuListJsonDto(o));
 
-        //주문 갯수 파악
-        for(OrderListListResponseDto o : list)
-            orderCount.add(o.getConsumerId());
-
-        //주문자id 인덱스 파악을 위한 map
-        int i = 0;
-        for(Integer count : orderCount) {
-            index.put(count, i);
-            i++;
-        }
-
-        //주문 갯수 만큼 list 생성 -> temp에 저장
-        for(Integer count : orderCount)
-            temp.add(new ArrayList<>());
-
-
-        //고객 별 주문을 temp 내 arrayList에 각각 저장
-        for(OrderListListResponseDto o : list){
-            for(Integer count : orderCount){
-                if(count == o.getConsumerId()){
-                    temp.get(index.get(count)).add(menuService.findById(o.getMenuId()));
-                    break;
-                }
-            }
-        }
-        //ConsumerOrder 리스트에 consumerOrder 정보 저장
-        for(Integer count : orderCount) 
-            consumerOrder.add(new ConsumerOrder(count, countCheck(temp.get(index.get(count)))));
-
-        //주문 정보
-        model.addAttribute("order", consumerOrder);
-
+        model.addAttribute("orderMenu", jList);
         //판매 상태 출력
         String str = "";
         if(statusService.existsById(1L)){//status 데이터 존재 여부

@@ -1,4 +1,4 @@
-package com.moskhu.domain.posts;
+package com.moskhu.domain.cls;
 
 import com.moskhu.web.dto.MenuResponseDto;
 import lombok.Getter;
