@@ -58,7 +58,7 @@
                             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                             <!-- RD Navbar Brand-->
                             <div class="rd-navbar-brand">
-                                <!--Brand--><a class="brand" href="orderMenu"><img class="brand-logo-dark" src="images/logo-default-234x82.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117" height="41"/></a>
+                                <!--Brand--><a class="brand" href="order"><img class="brand-logo-dark" src="images/logo-default-234x82.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117" height="41"/></a>
                             </div>
                         </div>
                         <div class="rd-navbar-aside-element">
@@ -165,6 +165,7 @@
                         <th>가격</th>
                         <th>수량</th>
                         <th>합계</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -178,6 +179,7 @@
                             </div>
                         </td>
                         <td>\{{allCount}}원</td>
+                        <td><button class="button button-lg button-secondary button-zakaria" type="submit" onclick="delete_menu(\{{key}})">삭제</button></td>
                     </tr>
                     \{{/each}}
                     </tbody>
@@ -239,6 +241,7 @@
     for(var i = 0; i < sessionStorage.length; i++){
         menuArray[i] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
         menuArray[i].allCount = parseInt(menuArray[i].price) * parseInt(menuArray[i].count);
+        menuArray[i].key = sessionStorage.key(i);
         totalCount += menuArray[i].allCount;
     }
 
@@ -251,6 +254,11 @@
 
     $('#basket').append(template(data));
     $('#total').append(totalTem(tot));
+
+    function delete_menu(id){
+        sessionStorage.removeItem(id);
+        location.reload();
+    }
 </script>
 </body>
 </html>
