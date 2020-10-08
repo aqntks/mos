@@ -2,11 +2,8 @@ package com.moskhu.web.dto;
 
 import com.moskhu.domain.posts.OrderMenu;
 import lombok.Getter;
-import org.json.simple.JSONObject;
-
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 
 @Getter
 public class OrderMenuListResponseDto {

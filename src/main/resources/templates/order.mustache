@@ -36,32 +36,29 @@
     </div>
 </div>
 <div class="page">
-    <!-- Page Header-->
     <header class="section page-header header-creative-wrap context-dark">
-        <!-- RD Navbar-->
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-creative rd-navbar-creative-2" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="100px" data-xl-stick-up-offset="112px" data-xxl-stick-up-offset="132px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
                 <div class="rd-navbar-aside-outer">
                    <div class="rd-navbar-aside">
                         <div class="rd-navbar-collapse">
                             <ul class="contacts-classic">
-                                <li><a class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68" href="result"></a>
+                                <li><a class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68" href="/result"></a>
                                 </li>
                             </ul>
                         </div>
-                        <!-- RD Navbar Panel-->
                         <div class="rd-navbar-panel">
                             <div class="rd-navbar-brand">
                                 <!--로고-->
-                                  <a class="brand" href="order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="150" height="60"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
+                                  <a class="brand" href="/order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="150" height="60"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
                             </div>
-                            <a class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68 top-result" href="result"></a>
+                            <button class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68 top-result" onclick="go_result()"></button>
                         </div>
                        <!-- 오른쪽 상단 주문내역 버튼-->
                         <div class="rd-navbar-aside-element">
                             <div class="rd-navbar-basket-wrap">
                                 <div class="rd-navbar-collapse">
-                                    <button class="rd-navbar-basket fl-bigmug-line-clipboard68" onclick="location.href='result'"></button>
+                                    <button class="rd-navbar-basket fl-bigmug-line-clipboard68" onclick="go_result()"></button>
                                 </div>
                             </div>
                         </div>
@@ -69,14 +66,12 @@
                 </div>
                 <div class="rd-navbar-main-outer">
                     <div class="rd-navbar-main">
-                        <!--<div class="rd-navbar-nav-wrap">-->
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="order">메뉴</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="/order">메뉴</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="cart">장바구니</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="/cart">장바구니</a>
                                 </li>
                             </ul>
-                        <!--</div>-->
                     </div>
                 </div>
             </nav>
@@ -109,7 +104,6 @@
                             <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
                         </form>
                     <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 1">
-                        <!-- Thumbnail Classic-->
                         <article class="thumbnail-classic block-1">
                             <div class="thumbnail-classic-figure"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/>
                             </div>
@@ -118,8 +112,7 @@
                                     <h5 class="thumbnail-classic-title"><a href="single-product.html">{{menuName}}</a></h5>
                                     <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                     <div class="thumbnail-classic-button-wrap">
-                                        <!--<div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74" href="single-product.html"></a></div>-->
-                                        <div class="product-button thumbnail-classic-button"><a class="button  button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                        <div class="product-button thumbnail-classic-button"><a class="button  button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                         <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}})"></button></div>
                                     </div>
                                 </div>
@@ -133,7 +126,6 @@
                             <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
                         </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 2">
-                            <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
                                 <div class="thumbnail-classic-figure"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/>
                                 </div>
@@ -142,7 +134,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}})"></button></div>
                                         </div>
                                     </div>
@@ -156,7 +148,6 @@
                             <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
                         </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 3">
-                            <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
                                 <div class="thumbnail-classic-figure"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/>
                                 </div>
@@ -165,7 +156,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}})"></button></div>
                                         </div>
                                     </div>
@@ -179,7 +170,6 @@
                             <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
                         </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 4">
-                            <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
                                 <div class="thumbnail-classic-figure"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/>
                                 </div>
@@ -188,7 +178,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}})"></button></div>
                                         </div>
                                     </div>
@@ -202,7 +192,6 @@
                             <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
                         </form>
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 5">
-                            <!-- Thumbnail Classic-->
                             <article class="thumbnail-classic block-1">
                                 <div class="thumbnail-classic-figure"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/>
                                 </div>
@@ -211,7 +200,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}})"></button></div>
                                         </div>
                                     </div>
@@ -223,7 +212,6 @@
             </div>
         </div>
     </section>
-    <!-- Page Footer-->
     <footer class="section footer-modern footer-modern-2">
         <div class="footer-modern-panel text-center">
             <div class="container">
@@ -233,10 +221,9 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
-<script src="js/core.min.js"></script>
-<script src="js/script.js"></script>
-<script src="app/basket.js"></script>
-<script text="text/javascript">
+<script src="/js/core.min.js"></script>
+<script src="/js/script.js"></script>
+<script text="/text/javascript">
     function add_cart(menuId, menuName, menuPrice) {
         var id = JSON.parse(sessionStorage.getItem(menuId));
         var num = 1;
@@ -251,6 +238,15 @@
                 count : num
         };
         sessionStorage.setItem(menuId, JSON.stringify(menu));
+        alert("메뉴 추가");
+    }
+    function go_result(){
+        var id = sessionStorage.getItem("id");
+        if(id == null)
+            alert("주문내역이 없습니다.");
+        else{
+        location.href="/result/" + id;
+        }
     }
 </script>
 </body>

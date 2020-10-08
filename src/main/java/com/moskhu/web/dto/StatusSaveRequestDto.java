@@ -1,6 +1,5 @@
 package com.moskhu.web.dto;
 
-import com.moskhu.domain.posts.Basket;
 import com.moskhu.domain.posts.Status;
 import lombok.Builder;
 import lombok.Getter;
