@@ -26,14 +26,11 @@ public class MosController {
 
     private final BasketService basketService;
     private final MenuService menuService;
-    private final OrderListService orderListService;
     private final OrderMenuService orderMenuService;
     private final StatusService statusService;
 
     private final MenuRepository menuRepository;
     private final BasketRepository basketRepository;
-
-
 
     @GetMapping("/") //시작 화면
     public String start(Model model) {
@@ -116,6 +113,11 @@ public class MosController {
         model.addAttribute("id", id);
         model.addAttribute("status", "조리중");
         return "result";
+    }
+
+    @GetMapping("/finish")
+    public String finish(Model model){
+        return "finish";
     }
 
     ////////////////////////////////////////////////////////////////////////////// 판매자
