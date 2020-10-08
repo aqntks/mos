@@ -1,22 +1,15 @@
 package com.moskhu.web;
 
-import com.moskhu.domain.cls.ConsumerOrder;
-import com.moskhu.domain.cls.MenuCount;
-import com.moskhu.domain.cls.MenuCountCheck;
-import com.moskhu.domain.posts.*;
 import com.moskhu.service.posts.*;
 import com.moskhu.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.parser.JSONParser;
-
 import org.json.simple.parser.ParseException;
-import org.apache.tomcat.util.digester.ArrayStack;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
@@ -24,15 +17,9 @@ import java.util.*;
 @Controller
 public class MosController {
 
-    private final BasketService basketService;
     private final MenuService menuService;
     private final OrderMenuService orderMenuService;
     private final StatusService statusService;
-
-    private final MenuRepository menuRepository;
-    private final BasketRepository basketRepository;
-
-
 
     @GetMapping("/") //시작 화면
     public String start(Model model) {
@@ -117,6 +104,11 @@ public class MosController {
         return "result";
     }
 
+    @GetMapping("/finish")
+    public String finish(Model model){
+        return "finish";
+    }
+
     ////////////////////////////////////////////////////////////////////////////// 판매자
 
     @GetMapping("/seller_start") //판매자 시작 화면
@@ -132,6 +124,7 @@ public class MosController {
             jList.add(new OrderMenuListJsonDto(o));
 
         model.addAttribute("orderMenu", jList);
+
         //판매 상태 출력
         String str = "";
         if(statusService.existsById(1L)){//status 데이터 존재 여부
@@ -209,33 +202,6 @@ public class MosController {
         model.addAttribute("menu", menu);
         return "edit_menu";
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////
-
-    public List<MenuCountCheck> countCheck(ArrayList<MenuResponseDto> list){
-        ArrayList<Long> count = new ArrayList<>();
-        Map<Long, Integer> check = new TreeMap<>();
-
-        for(MenuResponseDto m : list) {
-            if(check.containsKey(m.getMenuId()))
-                check.put(m.getMenuId(), check.get(m.getMenuId()) + 1);
-            else
-                check.put(m.getMenuId(), 1);
-        }
-
-        List<MenuCountCheck> result = new ArrayList<>();
-
-        for(MenuResponseDto m : list) {
-            if(!count.contains(m.getMenuId())) {
-                result.add(new MenuCountCheck(m, check.get(m.getMenuId())));
-                count.add(m.getMenuId());
-            }
-        }
-
-        return result;
-    }
-
-
 }
 
 

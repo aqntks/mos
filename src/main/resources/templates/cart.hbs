@@ -37,9 +37,7 @@
     </div>
 </div>
 <div class="page">
-    <!-- Page Header-->
     <header class="section page-header">
-        <!-- RD Navbar-->
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-creative rd-navbar-creative-2" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="100px" data-xl-stick-up-offset="112px" data-xxl-stick-up-offset="132px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
                 <div class="rd-navbar-aside-outer">
@@ -55,19 +53,17 @@
                                 -->
                             </ul><!--<a class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202" href="#"><span>2</span></a>-->
                         </div>
-                        <!-- RD Navbar Panel-->
                         <div class="rd-navbar-panel">
-                            <!-- 로고-->
                             <div class="rd-navbar-brand">
-                                <a class="brand" href="order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
+                                <a class="brand" href="/order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
                             </div>
-                            <a class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68 top-result" href="result"></a>
+                            <button class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68 top-result" onclick="go_result()"></button>
                         </div>
                         <!-- 오른쪽 상단 주문내역 버튼-->
                         <div class="rd-navbar-aside-element">
                             <div class="rd-navbar-basket-wrap">
                                 <div class="rd-navbar-collapse">
-                                    <button class="rd-navbar-basket fl-bigmug-line-clipboard68" onclick="location.href='result'"></button>
+                                    <button class="rd-navbar-basket fl-bigmug-line-clipboard68" onclick="go_result()"></button>
                                 </div>
                             </div>
                         </div>
@@ -75,16 +71,10 @@
                 </div>
                 <div class="rd-navbar-main-outer">
                     <div class="rd-navbar-main">
-                        <!--<div class="rd-navbar-nav-wrap">-->
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="order">메뉴</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="/order">메뉴</a>
                                 </li>
-                                <!--
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="cart">장바구니</a>
-                                </li>
-                                -->
                             </ul>
-                        <!--</div>-->
                     </div>
                 </div>
             </nav>
@@ -97,10 +87,8 @@
             </div>
         </div>
     </section>
-    <!-- Shopping Cart-->
     <section class="section section-xl bg-default">
         <div class="container cart-container">
-            <!-- shopping-cart-->
             <div class="table-custom-responsive" id="basket">
                 <script id="template" type="text/x-handlebars-template">
                 <table class="table-custom table-cart" id="cart_table">
@@ -119,9 +107,9 @@
                         <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-4-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">\{{name}}</a></td>
                         <td>\{{price}}원</td>
                         <td>
-                            <div class="table-cart-stepper">
-                                <input class="form-input" type="number" id="input-count" name="count" data-zeros="true" value="\{{count}}" min="1" max="1000">
-                            </div>
+                            \{{count}}개
+                            <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-note35" onclick="up_count(\{{key}})"></button></div>
+                            <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-cross81" onclick="down_count(\{{key}})"></button></div>
                         </td>
                         <td>\{{allCount}}원</td>
                         <td><button class="button button-lg button-secondary button-zakaria" type="submit" onclick="delete_menu(\{{key}})">삭제</button></td>
@@ -140,13 +128,12 @@
                                 <div class="heading-3 font-weight-normal" id="total">
                                     <script id="totalTem" type="text/x-handlebars-template">\{{total}}원</script></div>
                             </div>
-                        </div><a class="button button-lg button-primary button-zakaria" href="payment">결제</a>
+                        </div><a class="button button-lg button-primary button-zakaria" href="/payment">결제</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Page Footer-->
     <footer class="section footer-modern footer-modern-2">
         <div class="footer-modern-panel text-center">
             <div class="container">
@@ -158,10 +145,9 @@
 <div class="snackbars" id="form-output-global"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<script src="js/core.min.js"></script>
-<script src="js/script.js"></script>
-<script src="app/cart.js"></script>
-<script src="js/mustache.min.js"></script>
+<script src="/js/core.min.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/mustache.min.js"></script>
 <script type="text/javascript">
     var source = $("#template").html();
     var template = Handlebars.compile(source);
@@ -192,6 +178,34 @@
     function delete_menu(id){
         sessionStorage.removeItem(id);
         location.reload();
+    }
+
+    function go_result(){
+        var id = sessionStorage.getItem("id");
+        if(id == null)
+            alert("주문내역이 없습니다.");
+        else{
+        location.href="/result/" + id;
+        }
+    }
+
+    function up_count(key){
+        var temp = JSON.parse(sessionStorage.getItem(key));
+        temp.count += 1;
+        sessionStorage.setItem(key, JSON.stringify(temp));
+        location.reload(true);
+    }
+    function down_count(key){
+        var temp = JSON.parse(sessionStorage.getItem(key));
+        if(temp.count != 1){
+            temp.count -= 1;
+            sessionStorage.setItem(key, JSON.stringify(temp));
+            location.reload(true);
+        }
+        else{
+            sessionStorage.removeItem(key);
+            location.reload(true);
+        }
     }
 </script>
 </body>

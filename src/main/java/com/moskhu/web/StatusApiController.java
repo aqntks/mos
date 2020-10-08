@@ -2,11 +2,8 @@ package com.moskhu.web;
 
 import com.moskhu.service.posts.StatusService;
 import com.moskhu.web.dto.*;
-import com.moskhu.service.posts.BasketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController

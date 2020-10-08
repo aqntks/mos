@@ -1,15 +1,12 @@
 package com.moskhu.web.dto;
 
-import com.moskhu.domain.posts.OrderMenu;
 import lombok.Getter;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Getter
 public class OrderMenuListJsonDto {

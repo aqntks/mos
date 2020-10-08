@@ -1,4 +1,5 @@
 function delete_order(id) {
+    cancellation(id);
             $.ajax({
                 type: 'DELETE',
                 url: '/api/v1/orderMenu/'+id,
@@ -13,6 +14,7 @@ function delete_order(id) {
 }
 
 function finish_order(id) {
+    complete(id);
             $.ajax({
                 type: 'DELETE',
                 url: '/api/v1/orderMenu/'+id,

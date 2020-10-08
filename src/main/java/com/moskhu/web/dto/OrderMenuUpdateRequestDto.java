@@ -3,10 +3,7 @@ package com.moskhu.web.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.json.simple.JSONObject;
-
 import java.util.Collection;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
