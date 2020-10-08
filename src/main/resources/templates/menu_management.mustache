@@ -62,23 +62,24 @@
                         <div class="rd-navbar-aside-element"></div>
                     </div>
                 </div>
+               <!-- <div class="rd-navbar-main-outer">
+                    <div class="rd-navar-main"></div>
+                </div>-->
             </nav>
         </div>
     </header>
     <!-- 페이지 소개 -->
     <section class="breadcrumbs-custom">
-        <div class="parallax-container" data-parallax-img="images/bg-about.jpg">
-            <div class="breadcrumbs-custom-body parallax-content context-dark">
-                <div class="container">
+            <div class="breadcrumbs-custom-footer parallax-content context-dark page-title">
+                <div class="container cart-container">
                     <h2 class="text-transform-capitalize breadcrumbs-custom-title">메뉴 관리</h2>
                 </div>
             </div>
-        </div>
     </section>
     <!-- 메뉴 관리 섹션 -->
-    <section class="section section-xxl bg-default">
+    <section class="section section-xxl bg-default menumanage-section">
         <div class="container">
-            <div><a class="button button-lg button-primary button-zakaria" href="add_menu">메뉴 추가</a></div>
+            <div><a class="button button-lg button-primary button-zakaria add-menu-btn" href="add_menu">메뉴 추가</a></div>
             <div class="isotope-wrap">
                 <div class="isotope-filters">
                     <button class="isotope-filters-toggle button button-sm button-icon button-icon-right button-default-outline" data-custom-toggle=".isotope-filters-list" data-custom-toggle-disable-on-blur="true" data-custom-toggle-hide-on-blur="true"><span class="icon mdi mdi-chevron-down"></span>Filter</button>
@@ -94,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="row row-30 isotope isotope-custom-1" data-lightgallery="group">
+                <div class="row row-30 isotope isotope-custom-1 isotope-margin_top" data-lightgallery="group">
                     {{#type1}}
                         <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 1">
                             <!-- 메뉴 항목 -->

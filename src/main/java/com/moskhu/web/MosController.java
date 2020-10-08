@@ -26,7 +26,6 @@ public class MosController {
 
     private final BasketService basketService;
     private final MenuService menuService;
-    private final OrderListService orderListService;
     private final OrderMenuService orderMenuService;
     private final StatusService statusService;
 
