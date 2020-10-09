@@ -120,7 +120,10 @@
     for(var i = 0; i < sessionStorage.length; i++){
         menuArray[i] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
         totalCount += menuArray[i].count * menuArray[i].price;
+        delete menuArray[i].img;
+        sessionStorage.setItem(sessionStorage.key(i), JSON.stringify(menuArray[i]));
     }
+
     var tot = {
         total: totalCount
     }

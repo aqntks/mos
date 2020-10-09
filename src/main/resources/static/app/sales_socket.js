@@ -11,6 +11,7 @@ webSocket.onerror = function(message) {
     alert("소켓 에러");
 };
 webSocket.onmessage = function(message) {
+alert("주문 추가");
         $.ajax({
                 type : "GET",
                 url : "sales",
@@ -21,7 +22,6 @@ webSocket.onmessage = function(message) {
                     alert('통신실패!!');
                 },
                 success : function(data) {
-                    alert("주문 추가");
                     location.reload(true);
                     //$('body').children().remove();
                     //$('body').html(data);

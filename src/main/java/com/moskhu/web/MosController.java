@@ -1,5 +1,6 @@
 package com.moskhu.web;
 
+import com.moskhu.s3.S3Service;
 import com.moskhu.service.posts.*;
 import com.moskhu.web.dto.*;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -20,6 +24,7 @@ public class MosController {
     private final MenuService menuService;
     private final OrderMenuService orderMenuService;
     private final StatusService statusService;
+    private final S3Service s3Service;
 
     @GetMapping("/") //시작 화면
     public String start(Model model) {
@@ -187,8 +192,18 @@ public class MosController {
     }
 
     @GetMapping("/add_menu") //메뉴 추가 화면
-    public String add_menu(Model model){
+    public String add_menu1(Model model){
             return "add_menu";
+    }
+
+    @PostMapping("/add_menu") //메뉴 추가 화면
+    public String add_menu2(MenuSaveRequestDto menuSaveRequestDto, MultipartFile file) throws IOException {
+        String imgPath = s3Service.upload(file);
+        menuSaveRequestDto.setMenuImg(imgPath);
+
+        menuService.save(menuSaveRequestDto);
+
+        return "redirect:menu_management";
     }
 
     @GetMapping("/edit_menu") //메뉴 수정 화면
@@ -197,10 +212,27 @@ public class MosController {
     }
 
     @GetMapping("/edit_menu/{menuId}") //메뉴 수정 화면
-    public String edit_menu(@PathVariable Long menuId, Model model){
+    public String edit_menu1(@PathVariable Long menuId, Model model){
         MenuResponseDto menu = menuService.findById(menuId);
         model.addAttribute("menu", menu);
         return "edit_menu";
+    }
+
+    @PostMapping("/edit_menu/{menuId}") //메뉴 수정 화면
+    public String edit_menu2(@PathVariable Long menuId, MenuUpdateRequestDto menuUpdateRequestDto, MultipartFile file) throws IOException {
+        if(file.isEmpty()){
+            MenuResponseDto menu = menuService.findById(menuId);
+            menuUpdateRequestDto.setMenuImg(menu.getMenuImg());
+        }
+
+        else{
+            String imgPath = s3Service.upload(file);
+            menuUpdateRequestDto.setMenuImg(imgPath);
+        }
+
+        menuService.update(menuId, menuUpdateRequestDto);
+
+        return "redirect:/menu_management";
     }
 }
 
