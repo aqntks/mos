@@ -113,6 +113,10 @@ public class MosController {
     public String finish(Model model){
         return "finish";
     }
+    @GetMapping("/fail")
+    public String fail(Model model){
+        return "fail";
+    }
 
     ////////////////////////////////////////////////////////////////////////////// 판매자
 
