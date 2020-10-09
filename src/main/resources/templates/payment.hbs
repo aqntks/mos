@@ -53,7 +53,7 @@
                         <div class="rd-navbar-panel">
                             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                             <div class="rd-navbar-brand">
-                                <a class="brand" href="/order"><img class="brand-logo-dark" src="images/logo-default-234x82.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117" height="41"/></a>
+                                <a class="brand" href="/order"><img class="brand-logo-dark" src="/images/main_logo.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="/images/main_logo.png" alt="" width="117" height="41"/></a>
                             </div>
                         </div>
                     </div>
@@ -70,15 +70,33 @@
     </section>
     <section class="section section-xl bg-default">
         <div class="container">
+            <!--
+            <div style="margin-bottom: 10px">
+            <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"
+                    data-client-id="u86j4ripEt8LRfPGzQ8"
+                    data-mode="production"
+                    data-merchant-user-key="가맹점 사용자 식별키"
+                    data-merchant-pay-key="가맹점 주문 번호"
+                    data-product-name="상품명을 입력하세요"
+                    data-total-pay-amount="1000"
+                    data-tax-scope-amount="1000"
+                    data-tax-ex-scope-amount="0"
+                    data-return-url="사용자 결제 완료 후 결제 결과를 받을 URL">
+            </script>
+            </div>
+            -->
+            <div style="margin-bottom: 20px"><img src="/images/naverpay.png" width="110" height="40"/></div>
+            <div><img src="/images/payment_icon_yellow_medium.png" /></div>
+            <div style="margin-bottom: 10px"><img src="/images/toss.png" width="150" height="60"/></div>
             <div class="group-xl group-justify justify-content-center justify-content-md-between">
                 <div>
                     <form class="rd-form rd-mailform rd-form-inline rd-form-coupon">
                         <div class="form-wrap">
                             <input class="form-input form-input-inverse" id="coupon-code" type="text" name="text">
-                            <label class="form-label" for="coupon-code">Coupon code</label>
+                            <label class="form-label" for="coupon-code">쿠폰 번호</label>
                         </div>
                         <div class="form-button">
-                            <button class="button button-lg button-secondary button-zakaria" type="submit">Apply</button>
+                            <button class="button button-lg button-secondary button-zakaria" type="submit">적용</button>
                         </div>
                     </form>
                 </div>
