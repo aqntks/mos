@@ -26,6 +26,11 @@ public class MosController {
     private final StatusService statusService;
     private final S3Service s3Service;
 
+    @GetMapping("/test")
+    public String test(Model model){
+        return "/test";
+    }
+
     @GetMapping("/") //시작 화면
     public String start(Model model) {
         if (statusService.existsById(1L)) {//status 데이터 존재 여부
