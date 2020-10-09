@@ -41,18 +41,13 @@
             <nav class="rd-navbar rd-navbar-creative rd-navbar-creative-2" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="100px" data-xl-stick-up-offset="112px" data-xxl-stick-up-offset="132px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
                 <div class="rd-navbar-aside-outer">
                    <div class="rd-navbar-aside">
-                        <div class="rd-navbar-collapse">
-                            <ul class="contacts-classic">
-                                <li><a class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68" href="/result"></a>
-                                </li>
-                            </ul>
-                        </div>
+                        <div class="rd-navbar-collapse"></div>
                         <div class="rd-navbar-panel">
                             <div class="rd-navbar-brand">
                                 <!--로고-->
                                   <a class="brand" href="/order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="150" height="60"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
                             </div>
-                            <button class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68 top-result" onclick="go_result()"></button>
+                            <a class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68" onclick="go_result()"></a>
                         </div>
                        <!-- 오른쪽 상단 주문내역 버튼-->
                         <div class="rd-navbar-aside-element">
@@ -65,11 +60,11 @@
                     </div>
                 </div>
                 <div class="rd-navbar-main-outer">
-                    <div class="rd-navbar-main">
-                            <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="/order">메뉴</a>
+                    <div class="rd-navbar-main fix">
+                            <ul class="rd-navbar-nav menu-ul">
+                                <li class="rd-nav-item menu-li"><a class="rd-nav-link" href="/order"><span>메뉴</span></a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="/cart">장바구니</a>
+                                <li class="rd-nav-item menu-li"><a class="rd-nav-link" href="/cart"><span>장바구니</span></a>
                                 </li>
                             </ul>
                     </div>
