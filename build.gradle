@@ -26,6 +26,7 @@ repositories{
     mavenCentral()
     jcenter()
 }
+
 dependencies{
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok')
@@ -38,12 +39,13 @@ dependencies{
     compile('org.springframework.boot:spring-boot-starter-websocket')
     compile("org.webjars:sockjs-client:1.1.2")
     compile("org.webjars:stomp-websocket:2.3.3")
+    //compile group: 'org.springframework.cloud', name: 'spring-cloud-aws', version: '2.2.1.RELEASE', ext: 'pom'
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'junit', name: 'junit', version: '4.12'
     annotationProcessor('org.projectlombok:lombok')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
-    //implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
-    //implementation 'com.amazonaws:aws-java-sdk-s3'
+    implementation ('com.amazonaws:aws-java-sdk-bom:1.11.228')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
 }
 

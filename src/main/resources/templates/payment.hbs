@@ -45,26 +45,9 @@
                         <div class="rd-navbar-collapse"></div>
                         <div class="rd-navbar-panel">
                             <div class="rd-navbar-brand">
-                                <a class="brand" href="/order"><img class="brand-logo-dark" src="images/mos_logo.jpg" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/mos_logo.jpg" alt="" width="117" height="41"/></a>
-                            </div>
-                            <a class="rd-navbar-basket rd-navbar-basket-mobile order-list fl-bigmug-line-clipboard68" onclick="go_result()"></a>
-                        </div>
-                        <!-- 오른쪽 상단 주문내역 버튼-->
-                        <div class="rd-navbar-aside-element">
-                            <div class="rd-navbar-basket-wrap">
-                                <div class="rd-navbar-collapse">
-                                    <button class="rd-navbar-basket fl-bigmug-line-clipboard68" onclick="go_result()"></button>
-                                </div>
+                                <a class="brand" href="/order"><img class="brand-logo-dark" src="/images/main_logo.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="/images/main_logo.png" alt="" width="117" height="41"/></a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="rd-navbar-main-outer">
-                    <div class="rd-navbar-main">
-                        <ul class="rd-navbar-nav">
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="/order">메뉴</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </nav>
@@ -79,15 +62,33 @@
     </section>
     <section class="section section-xl bg-default">
         <div class="container">
+            <!--
+            <div style="margin-bottom: 10px">
+            <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"
+                    data-client-id="u86j4ripEt8LRfPGzQ8"
+                    data-mode="production"
+                    data-merchant-user-key="가맹점 사용자 식별키"
+                    data-merchant-pay-key="가맹점 주문 번호"
+                    data-product-name="상품명을 입력하세요"
+                    data-total-pay-amount="1000"
+                    data-tax-scope-amount="1000"
+                    data-tax-ex-scope-amount="0"
+                    data-return-url="사용자 결제 완료 후 결제 결과를 받을 URL">
+            </script>
+            </div>
+            -->
+            <div style="margin-bottom: 20px"><img src="/images/naverpay.png" width="110" height="40"/></div>
+            <div><img src="/images/payment_icon_yellow_medium.png" /></div>
+            <div style="margin-bottom: 10px"><img src="/images/toss.png" width="150" height="60"/></div>
             <div class="group-xl group-justify justify-content-center justify-content-md-between">
                 <div>
                     <form class="rd-form rd-mailform rd-form-inline rd-form-coupon">
                         <div class="form-wrap">
                             <input class="form-input form-input-inverse" id="coupon-code" type="text" name="text">
-                            <label class="form-label" for="coupon-code">Coupon code</label>
+                            <label class="form-label" for="coupon-code">쿠폰 번호</label>
                         </div>
                         <div class="form-button">
-                            <button class="button button-lg button-secondary button-zakaria" type="submit">Apply</button>
+                            <button class="button button-lg button-secondary button-zakaria" type="submit">적용</button>
                         </div>
                     </form>
                 </div>
@@ -129,7 +130,10 @@
     for(var i = 0; i < sessionStorage.length; i++){
         menuArray[i] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
         totalCount += menuArray[i].count * menuArray[i].price;
+        delete menuArray[i].img;
+        sessionStorage.setItem(sessionStorage.key(i), JSON.stringify(menuArray[i]));
     }
+
     var tot = {
         total: totalCount
     }

@@ -28,7 +28,7 @@ public class Menu extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String menuDescription;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String menuImg;
 
     @Column(nullable = false)

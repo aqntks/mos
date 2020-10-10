@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="ko">
+
 <head>
     <title>MOS</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,10 +42,18 @@
     <header class="section page-header">
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-creative rd-navbar-creative-2" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="100px" data-xl-stick-up-offset="112px" data-xxl-stick-up-offset="132px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+                <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
                 <div class="rd-navbar-aside-outer">
                     <div class="rd-navbar-aside">
-                        <div class="rd-navbar-collapse"></div>
+                        <div class="rd-navbar-collapse">
+                            <ul class="contacts-classic">
+                                <li><span class="contacts-classic-title">Call us:</span> <a class="link" href="tel:#">010 - 1234 - 5678</a>
+                                </li>
+                                <li><a href="mailto:#">mos@skhu.ac.kr</a></li>
+                            </ul>
+                        </div>
                         <div class="rd-navbar-panel">
+                            <!-- 로고 -->
                             <div class="rd-navbar-brand">
                                 <!--로고 이미지--><a class="brand" href="/order"><img class="brand-logo-dark" src="/images/main_logo.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="/images/main_logo.png" alt="" width="117" height="41"/></a>
                             </div>
@@ -56,9 +66,11 @@
     </header>
     <!-- 페이지 소개 -->
     <section class="breadcrumbs-custom">
-        <div class="breadcrumbs-custom-footer page-title">
-            <div class="container cart-container">
-                <h2 class="text-transform-capitalize breadcrumbs-custom-title">주문 내역</h2>
+        <div class="parallax-container" data-parallax-img="/images/bg-about.jpg">
+            <div class="breadcrumbs-custom-body parallax-content context-dark">
+                <div class="result-title">
+                    <h2 class="text-transform-capitalize breadcrumbs-custom-title">주문 취소</h2>
+                </div>
             </div>
         </div>
     </section>
@@ -66,28 +78,28 @@
     <section class="section section-xxl bg-default text-center">
         <div class="container">
             <div class="row row-xl row-30 justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <article class="pricing-classic">
-                            <div class="pricing-classic-header"><img class="pricing-classic-figure2"  alt="" width="346" height="229"/>
-                                <div class="pricing-classic-caption">
-                                    <div>
-                                        <h3 class="pricing-classic-title">주문번호 {{id}}</h3>
-                                        <div class="pricing-classic-price-wrap">
-                                            <div class="pricing-classic-price heading-4">{{total}}원</div>
-                                        </div>
+                <div class="col-sm-6 col-lg-4">
+                    <article class="pricing-classic">
+                        <div class="pricing-classic-header"><img class="pricing-classic-figure" src="/images/pricing-1-346x229.jpg" alt="" width="346" height="229"/>
+                            <div class="pricing-classic-caption">
+                                <div id="total">
+                                    <script id="totalTem" type="text/x-handlebars-template">
+                                    <h3 class="pricing-classic-title">주문번호 \{{id}}</h3>
+                                    <div class="pricing-classic-price-wrap">
+                                        <div class="pricing-classic-price heading-4">\{{total}}원</div>
                                     </div>
+                                    </script>
                                 </div>
                             </div>
-                            <div class="pricing-classic-body">
-                                <ul class="pricing-classic-list">
-                                    {{#menus}}
-                                        <li><span>{{name}}</span> {{count}}</li>
-                                    {{/menus}}
-                                </ul>
-                                <button class="button button-lg button-secondary2 button-zakaria status">{{status}}</button>
-                            </div>
-                        </article>
-                    </div>
+                        </div>
+                        <div class="pricing-classic-body">
+                            <ul class="pricing-classic-list" >
+                                <h3>판매자의 요청으로 주문이 취소되었습니다.</h3>
+                            </ul>
+                            <button class="button button-lg button-secondary button-zakaria">주문 취소</button>
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
@@ -102,36 +114,29 @@
 <div class="snackbars" id="form-output-global"></div>
 <script src="/js/core.min.js"></script>
 <script src="/js/script.js"></script>
+<script src="/js/handlebars-v4.7.6.js"></script>
 <script type="text/javascript">
-var webSocket = new WebSocket("ws://localhost:8080/ws");
+    var source = $("#totalTem").html();
+    var totalTem = Handlebars.compile(source);
 
-webSocket.onopen = function(message) {
-var mess = "주문 " + {{id}};
-webSocket.send(mess);
-};
-webSocket.onclose = function(message) {
+    var menuArray = new Array();
+    var totalCount = 0;
+    var orderId = sessionStorage.getItem("id");
+    sessionStorage.removeItem("id");
 
-};
-webSocket.onerror = function(message) {
-    alert("소켓 에러");
-};
-webSocket.onmessage = function(message) {
-    alert(message.data);
-    var jbSplit = message.data.split(' ');
-
-    if(jbSplit[0] == "판매자_주문취소"){
-        location.href="/fail";
+    for(var i = 0; i < sessionStorage.length; i++){
+        menuArray[i] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
+        menuArray[i].allCount = parseInt(menuArray[i].price) * parseInt(menuArray[i].count);
+        totalCount += menuArray[i].allCount;
     }
-    if(jbSplit[0] == "판매자_조리완료"){
-        location.href="/finish";
-    }
-};
-function sendMessage(id) {
 
-}
-function disconnect() {
-    webSocket.close();
-}
+    var tot = {
+        id: orderId,
+        total: totalCount
+    }
+
+    $('#total').append(totalTem(tot));
+    sessionStorage.clear();
 </script>
 </body>
 </html>

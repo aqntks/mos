@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CLato%7CKalam:300,400,700">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/fonts.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
 
 </head>
 <body>
-<div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+<div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
 <div class="preloader">
     <div class="preloader-body">
         <div class="cssload-bell">
@@ -49,49 +49,53 @@
                                 <li><span class="contacts-classic-title">Call us:</span> <a class="link" href="tel:#">010 - 1234 - 5678</a>
                                 </li>
                                 <li><a href="mailto:#">mos@skhu.ac.kr</a></li>
-                            </ul><a class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202" href="#"><span>2</span></a>
+                            </ul>
                         </div>
+                        <!-- RD Navbar Panel-->
                         <div class="rd-navbar-panel">
-                            <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                             <!-- 로고 -->
                             <div class="rd-navbar-brand">
-                                <!--로고 이미지--><a class="brand" href="/seller_start"><img class="brand-logo-dark" src="/images/main_logo.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="/images/main_logo.png" alt="" width="117" height="41"/></a>
+                                <!--로고 이미지-->
+                                <a class="brand" href="/seller_start"><img class="brand-logo-dark" src="/images/main_logo.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="/images/main_logo.png" alt="" width="117" height="41"/></a>
                             </div>
                         </div>
+                        <div class="rd-navbar-aside-element"></div>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
+</div>
+</body>
+</html>
     <section class="breadcrumbs-custom">
-        <div class="parallax-container" data-parallax-img="/images/bg-about.jpg">
+        <div class="parallax-container" data-parallax-img="images/bg-about.jpg">
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
-                    <h2 class="text-transform-capitalize breadcrumbs-custom-title">메뉴 수정</h2>
+                    <h2 class="text-transform-capitalize breadcrumbs-custom-title">메뉴 등록</h2>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Get in touch-->
     <section class="section section-xl bg-default text-md-left">
         <div class="container">
             <div class="title-classic">
-                <h3 class="title-classic-title">메뉴 수정</h3>
-                <p class="title-classic-subtitle">메뉴를 수정하세요<br class="d-none d-lg-block">Please modify the menu.</p>
+                <h3 class="title-classic-title">메뉴 등록</h3>
+                <p class="title-classic-subtitle">판매할 메뉴를 등록하세요
             </div>
-            <form action="/edit_menu/{{menu.menuId}}" method="post" enctype="multipart/form-data">
+            <form action="/add_menu" method="post" enctype="multipart/form-data">
                 <div class="row row-20 row-md-30">
                     <div class="col-lg-8">
                         <div class="row row-20 row-md-30">
                             <div class="col-sm-6">
                                 <div class="form-wrap">
-                                    <input class="form-input" id="menuName" type="text" value="{{menu.menuName}}" name="menuName" data-constraints="@Required"/>
+                                    <input class="form-input" id="menuName" type="text" name="menuName" data-constraints="@Required"/>
                                     <label class="form-label" for="menuName">메뉴 이름</label>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-wrap">
-                                    <input class="form-input" id="menuPrice" type="text" value="{{menu.menuPrice}}" name="menuPrice" data-constraints="@Numeric"/>
+                                    <input class="form-input" id="menuPrice" type="text" name="menuPrice" data-constraints="@Numeric"/>
                                     <label class="form-label" for="menuPrice">메뉴 가격</label>
                                 </div>
                             </div>
@@ -118,21 +122,23 @@
                     <div class="col-lg-4">
                         <div class="form-wrap">
                             <label class="form-label" for="menuDescription">메뉴 설명</label>
-                            <textarea class="form-input textarea-lg" id="menuDescription" name="menuDescription" data-constraints="@Required">{{menu.menuDescription}}</textarea>
+                            <textarea class="form-input textarea-lg" id="menuDescription" name="menuDescription" data-constraints="@Required"></textarea>
                         </div>
                         <div class="form-wrap">
-                            이미지 수정
+                            이미지 등록
                             <input type="file" name="file" accept="image/*" onchange="setThumbnail(event);"/>
-                            <div id="image_container"><img src="{{menu.menuImg}}" alt="" width="270" height="250"/></div>
+                            <div id="image_container"></div>
                         </div>
+
                     </div>
                 </div>
                 <input type="hidden" id="sellerId" name="sellerId" value="1">
-                <input type="hidden" id="menuImg" value="1">
-                <button class="button button-lg button-primary button-zakaria" type="submit">메뉴 수정</button>
+                <input type="hidden" id="menuImg2" value="1">
+                <button class="button button-lg button-primary button-zakaria" type="submit">메뉴 등록</button>
             </form>
         </div>
     </section>
+    <!-- Page Footer-->
     <footer class="section footer-modern footer-modern-2">
         <div class="footer-modern-panel text-center">
             <div class="container">
@@ -142,13 +148,11 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
-<script src="/js/core.min.js"></script>
-<script src="/js/script.js"></script>
-<script src="/app/edit_menu.js"></script>
+<script src="js/core.min.js"></script>
+<script src="js/script.js"></script>
+<script src="app/edit_menu.js"></script>
 <script>
     function setThumbnail(event) {
-        $('#image_container').children().remove();
-
         var reader = new FileReader();
         reader.onload = function(event) {
             var img = document.createElement("img");
@@ -158,5 +162,8 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
+
+
+
 </body>
 </html>
