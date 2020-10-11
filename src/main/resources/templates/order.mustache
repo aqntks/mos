@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/app/pop_up.css">
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
 </head>
 <body>
@@ -98,22 +99,22 @@
                             <input type="hidden" id="consumerId{{menuId}}"  value="1">
                             <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
                         </form>
-                    <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 1">
-                        <article class="thumbnail-classic block-1">
-                            <div class="thumbnail-classic-figure"><img src="{{menuImg}}" alt="" width="270" height="250"/>
-                            </div>
-                            <div class="thumbnail-classic-caption">
-                                <div>
-                                    <h5 class="thumbnail-classic-title"><a href="single-product.html">{{menuName}}</a></h5>
-                                    <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
-                                    <div class="thumbnail-classic-button-wrap">
-                                        <div class="product-button thumbnail-classic-button"><a class="button  button-secondary button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
-                                        <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}}, '{{menuImg}}')"></button></div>
+                        <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 2">
+                            <article class="thumbnail-classic block-1">
+                                <div class="thumbnail-classic-figure"><img src="{{menuImg}}" alt="" width="270" height="250"/>
+                                </div>
+                                <div class="thumbnail-classic-caption">
+                                    <div>
+                                        <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
+                                        <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
+                                        <div class="thumbnail-classic-button-wrap">
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}}, '{{menuImg}}')"></button></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     {{/type1}}
                     {{#type2}}
                         <form name="basket{{menuId}}">
@@ -218,7 +219,7 @@
 <div class="snackbars" id="form-output-global"></div>
 <script src="/js/core.min.js"></script>
 <script src="/js/script.js"></script>
-<script text="/text/javascript">
+<script type="text/javascript">
     function add_cart(menuId, menuName, menuPrice, menuImg) {
         var id = JSON.parse(sessionStorage.getItem(menuId));
         var num = 1;

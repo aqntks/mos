@@ -7,7 +7,7 @@ function delete_order(id) {
                 contentType:'application/json; charset=utf-8'
             }).done(function() {
                 alert('주문이 취소되었습니다.');
-                window.location.href = '/sales';
+                $('#orderSection').load(location.href + ' #orderSection');
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
@@ -22,7 +22,7 @@ function finish_order(id) {
                 contentType:'application/json; charset=utf-8'
             }).done(function() {
                 alert('조리가 완료되었습니다.');
-                window.location.href = '/sales';
+                $('#orderSection').load(location.href + ' #orderSection');
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });

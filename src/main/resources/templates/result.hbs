@@ -56,11 +56,15 @@
     </header>
     <!-- 페이지 소개 -->
     <section class="breadcrumbs-custom">
-        <div class="breadcrumbs-custom-footer page-title">
-            <div class="container cart-container">
-                <h2 class="text-transform-capitalize breadcrumbs-custom-title">주문 내역</h2>
+            <div class="breadcrumbs-custom-body parallax-content context-dark">
+                <div class="container cart-container" id="title2">
+                    <script id="titleTem" type="text/x-handlebars-template">
+                    <h2 class="text-transform-capitalize breadcrumbs-custom-title">
+                        \{{title2}}
+                    </h2>
+                    </script>
+                </div>
             </div>
-        </div>
     </section>
     <!-- 주문 목록 -->
     <section class="section section-xxl bg-default text-center">
@@ -79,13 +83,19 @@
                                 </div>
                             </div>
                             <div class="pricing-classic-body">
-                                <ul class="pricing-classic-list">
+                                <ul class="pricing-classic-list" id="desc">
                                     {{#menus}}
                                         <li><span>{{name}}</span> {{count}}</li>
                                     {{/menus}}
                                 </ul>
-                                <button class="button button-lg button-secondary2 button-zakaria status">{{status}}</button>
+                                <button class="button button-lg button-secondary2 button-zakaria status" id="status"></button>
+                                <script id="statusTem" type="text/x-handlebars-template">
+                                    \{{status}}
+                                    </script>
                             </div>
+                            <script id="descTem" type="text/x-handlebars-template">
+                                <h3>판매자의 요청으로 주문이 취소되었습니다.</h3>
+                            </script>
                         </article>
                     </div>
             </div>
@@ -100,9 +110,27 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script src="/js/core.min.js"></script>
 <script src="/js/script.js"></script>
 <script type="text/javascript">
+
+    var source = $("#titleTem").html();
+    var titleTem = Handlebars.compile(source);
+    source = $("#statusTem").html();
+    var statusTem = Handlebars.compile(source);
+    var check = 0;
+
+    var data = {
+        title2: '주문 내역',
+        status: '조리중'
+    }
+
+    $('#title2').append(titleTem(data));
+    $('#status').append(statusTem(data));
+
+
 var webSocket = new WebSocket("ws://localhost:8080/ws");
 
 webSocket.onopen = function(message) {
@@ -116,14 +144,36 @@ webSocket.onerror = function(message) {
     alert("소켓 에러");
 };
 webSocket.onmessage = function(message) {
-    alert(message.data);
     var jbSplit = message.data.split(' ');
 
     if(jbSplit[0] == "판매자_주문취소"){
-        location.href="/fail";
+        source = $("#descTem").html();
+        var descTem = Handlebars.compile(source);
+        alert('주문 취소');
+        data = {
+            title2: '주문 취소',
+            status: '주문 취소'
+        }
+        $('#desc').html(descTem(data));
+        $('#title2').children().remove();
+        $('#status').children().remove();
+        $('#title2').html(titleTem(data));
+        $('#status').html(statusTem(data));
+
+        sessionStorage.clear();
     }
     if(jbSplit[0] == "판매자_조리완료"){
-        location.href="/finish";
+        alert('조리 완료');
+        data = {
+            title2: '조리 완료',
+            status: '조리 완료'
+        }
+        $('#title2').children().remove();
+        $('#status').children().remove();
+        $('#title2').html(titleTem(data));
+        $('#status').html(statusTem(data));
+
+        sessionStorage.clear();
     }
 };
 function sendMessage(id) {
@@ -132,6 +182,7 @@ function sendMessage(id) {
 function disconnect() {
     webSocket.close();
 }
+
 </script>
 </body>
 </html>

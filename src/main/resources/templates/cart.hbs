@@ -78,7 +78,7 @@
         </div>
     </section>
     <section class="section section-xl bg-default">
-        <div class="container cart-container2">
+        <div class="container cart-container2" id="countRe">
             <div class="table-custom-responsive" id="basket">
                 <script id="template" type="text/x-handlebars-template">
                   <table calss="cart-table" id="cart_table">
@@ -143,65 +143,6 @@
 <script src="/js/core.min.js"></script>
 <script src="/js/script.js"></script>
 <script src="/js/mustache.min.js"></script>
-<script type="text/javascript">
-    var source = $("#template").html();
-    var template = Handlebars.compile(source);
-    source = $("#totalTem").html();
-    var totalTem = Handlebars.compile(source);
-
-
-    var menuArray = new Array();
-    var totalCount = 0;
-
-    for(var i = 0; i < sessionStorage.length; i++){
-        menuArray[i] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
-        menuArray[i].allCount = parseInt(menuArray[i].price) * parseInt(menuArray[i].count);
-        menuArray[i].key = sessionStorage.key(i);
-        totalCount += menuArray[i].allCount;
-    }
-
-     var data = {
-        menu: menuArray
-    }
-    var tot = {
-        total: totalCount
-    }
-
-    $('#basket').append(template(data));
-    $('#total').append(totalTem(tot));
-
-    function delete_menu(id){
-        sessionStorage.removeItem(id);
-        location.reload();
-    }
-
-    function go_result(){
-        var id = sessionStorage.getItem("id");
-        if(id == null)
-            alert("주문내역이 없습니다.");
-        else{
-        location.href="/result/" + id;
-        }
-    }
-
-    function up_count(key){
-        var temp = JSON.parse(sessionStorage.getItem(key));
-        temp.count += 1;
-        sessionStorage.setItem(key, JSON.stringify(temp));
-        location.reload(true);
-    }
-    function down_count(key){
-        var temp = JSON.parse(sessionStorage.getItem(key));
-        if(temp.count != 1){
-            temp.count -= 1;
-            sessionStorage.setItem(key, JSON.stringify(temp));
-            location.reload(true);
-        }
-        else{
-            sessionStorage.removeItem(key);
-            location.reload(true);
-        }
-    }
-</script>
+<script src="/app/cart.js"></script>
 </body>
 </html>
