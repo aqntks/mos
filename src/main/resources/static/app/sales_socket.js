@@ -1,4 +1,4 @@
-var webSocket = new WebSocket("ws://localhost:8080/ws");
+var webSocket = new WebSocket("ws://ec2-15-164-44-102.ap-northeast-2.compute.amazonaws.com:8080//ws");
 
 webSocket.onopen = function(message) {
     var mess = "판매자_등록";
