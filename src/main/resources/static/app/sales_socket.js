@@ -12,21 +12,7 @@ webSocket.onerror = function(message) {
 };
 webSocket.onmessage = function(message) {
 alert("주문 추가");
-        $.ajax({
-                type : "GET",
-                url : "sales",
-                async : true,
-                dataType : "html",
-                cache: false,
-                error : function() {
-                    alert('통신실패!!');
-                },
-                success : function(data) {
-                    location.reload(true);
-                    //$('body').children().remove();
-                    //$('body').html(data);
-                }
-            });
+$('#orderSection').load(location.href + ' #orderSection');
 };
 function cancellation(id) {
     var message = "판매자_주문취소 " + id;

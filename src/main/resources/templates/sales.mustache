@@ -14,6 +14,7 @@
  </head>
  <body>
  <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+
  <div class="preloader">
      <div class="preloader-body">
          <div class="cssload-bell">
@@ -35,6 +36,7 @@
          </div>
      </div>
  </div>
+
  <div class="page">
      <!--상단 바 -->
     <header class="section page-header">
@@ -51,7 +53,8 @@
                             </ul>
                         </div>
                         <div class="rd-navbar-panel">
-                            <!-- 로고 -->
+
+                           <!-- 로고 -->
                             <div class="rd-navbar-brand">
                                 <!--로고 이미지-->
                                 <a class="brand" href="/seller_start"><img class="brand-logo-dark" src="/images/main_logo.png" alt="" width="117" height="41"/><img class="brand-logo-light" src="/images/main_logo.png" alt="" width="117" height="41"/></a>
@@ -74,8 +77,8 @@
         </div>
     </section>
     <!-- 주문 목록 -->
-    <section class="section section-xxl bg-default text-center" id="orderSection">
-        <div class="container">
+    <section class="section section-xxl bg-default text-center">
+        <div class="container" id="orderSection">
             <div class="group-sm">
                 <button class="button button-default-outline-2 button-zakaria" onclick="statusOff(1)">판매 종료</button>
                 <button class="button button-lg button-secondary button-zakaria">{{status}}</button>
@@ -124,9 +127,9 @@
 </div>
 <div class="snackbars" id="form-output-global"></div>
 <script src="/js/core.min.js"></script>
-<script src="/js/script.js"></script>
+ <script src="/js/script.js"></script>
 <script src="/js/mustache.min.js"></script>
-<script src="/app/sales_socket.js"></script>
-<script src="/app/sales.js"></script>
-</body>
-</html>
+ <script src="/app/sales_socket.js"></script>
+ <script src="/app/sales.js"></script>
+ </body>
+ </html>

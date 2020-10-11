@@ -68,8 +68,12 @@
     <section class="breadcrumbs-custom">
         <div class="parallax-container" data-parallax-img="/images/bg-about.jpg">
             <div class="breadcrumbs-custom-body parallax-content context-dark">
-                <div class="result-title">
-                    <h2 class="text-transform-capitalize breadcrumbs-custom-title">주문 취소</h2>
+                <div class="result-title" id="title2">
+                    <script id="titleTem" type="text/x-handlebars-template">
+                    <h2 class="text-transform-capitalize breadcrumbs-custom-title">
+                        \{{title2}}
+                    </h2>
+                    </script>
                 </div>
             </div>
         </div>
@@ -78,28 +82,34 @@
     <section class="section section-xxl bg-default text-center">
         <div class="container">
             <div class="row row-xl row-30 justify-content-center">
-                <div class="col-sm-6 col-lg-4">
-                    <article class="pricing-classic">
-                        <div class="pricing-classic-header"><img class="pricing-classic-figure" src="/images/pricing-1-346x229.jpg" alt="" width="346" height="229"/>
-                            <div class="pricing-classic-caption">
-                                <div id="total">
-                                    <script id="totalTem" type="text/x-handlebars-template">
-                                    <h3 class="pricing-classic-title">주문번호 \{{id}}</h3>
-                                    <div class="pricing-classic-price-wrap">
-                                        <div class="pricing-classic-price heading-4">\{{total}}원</div>
+                    <div class="col-sm-6 col-lg-4">
+                        <article class="pricing-classic">
+                            <div class="pricing-classic-header"><img class="pricing-classic-figure" src="/images/pricing-1-346x229.jpg" alt="" width="346" height="229"/>
+                                <div class="pricing-classic-caption">
+                                    <div>
+                                        <h3 class="pricing-classic-title">주문번호 {{id}}</h3>
+                                        <div class="pricing-classic-price-wrap">
+                                            <div class="pricing-classic-price heading-4">{{total}}원</div>
+                                        </div>
                                     </div>
-                                    </script>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pricing-classic-body">
-                            <ul class="pricing-classic-list" >
+                            <div class="pricing-classic-body">
+                                <ul class="pricing-classic-list" id="desc">
+                                    {{#menus}}
+                                        <li><span>{{name}}</span> {{count}}</li>
+                                    {{/menus}}
+                                </ul>
+                                <button class="button button-lg button-secondary button-zakaria" id="status"></button>
+                                <script id="statusTem" type="text/x-handlebars-template">
+                                    \{{status}}
+                                    </script>
+                            </div>
+                            <script id="descTem" type="text/x-handlebars-template">
                                 <h3>판매자의 요청으로 주문이 취소되었습니다.</h3>
-                            </ul>
-                            <button class="button button-lg button-secondary button-zakaria">주문 취소</button>
-                        </div>
-                    </article>
-                </div>
+                            </script>
+                        </article>
+                    </div>
             </div>
         </div>
     </section>
@@ -112,31 +122,79 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script src="/js/core.min.js"></script>
 <script src="/js/script.js"></script>
-<script src="/js/handlebars-v4.7.6.js"></script>
 <script type="text/javascript">
-    var source = $("#totalTem").html();
-    var totalTem = Handlebars.compile(source);
 
-    var menuArray = new Array();
-    var totalCount = 0;
-    var orderId = sessionStorage.getItem("id");
-    sessionStorage.removeItem("id");
+    var source = $("#titleTem").html();
+    var titleTem = Handlebars.compile(source);
+    source = $("#statusTem").html();
+    var statusTem = Handlebars.compile(source);
+    var check = 0;
 
-    for(var i = 0; i < sessionStorage.length; i++){
-        menuArray[i] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
-        menuArray[i].allCount = parseInt(menuArray[i].price) * parseInt(menuArray[i].count);
-        totalCount += menuArray[i].allCount;
+    var data = {
+        title2: '주문 내역',
+        status: '조리중'
     }
 
-    var tot = {
-        id: orderId,
-        total: totalCount
-    }
+    $('#title2').append(titleTem(data));
+    $('#status').append(statusTem(data));
 
-    $('#total').append(totalTem(tot));
-    sessionStorage.clear();
+
+var webSocket = new WebSocket("ws://localhost:8080/ws");
+
+webSocket.onopen = function(message) {
+var mess = "주문 " + {{id}};
+webSocket.send(mess);
+};
+webSocket.onclose = function(message) {
+
+};
+webSocket.onerror = function(message) {
+    alert("소켓 에러");
+};
+webSocket.onmessage = function(message) {
+    var jbSplit = message.data.split(' ');
+
+    if(jbSplit[0] == "판매자_주문취소"){
+        source = $("#descTem").html();
+        var descTem = Handlebars.compile(source);
+        alert('주문 취소');
+        data = {
+            title2: '주문 취소',
+            status: '주문 취소'
+        }
+        $('#desc').html(descTem(data));
+        $('#title2').children().remove();
+        $('#status').children().remove();
+        $('#title2').html(titleTem(data));
+        $('#status').html(statusTem(data));
+
+        sessionStorage.clear();
+    }
+    if(jbSplit[0] == "판매자_조리완료"){
+        alert('조리 완료');
+        data = {
+            title2: '조리 완료',
+            status: '조리 완료'
+        }
+        $('#title2').children().remove();
+        $('#status').children().remove();
+        $('#title2').html(titleTem(data));
+        $('#status').html(statusTem(data));
+
+        sessionStorage.clear();
+    }
+};
+function sendMessage(id) {
+
+}
+function disconnect() {
+    webSocket.close();
+}
+
 </script>
 </body>
 </html>

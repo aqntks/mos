@@ -80,9 +80,11 @@
 		$window.on( 'scroll', scrollHandler );
 	}
 
+
 	// Initialize scripts that require a loaded page
 	$window.on('load', function () {
 		// Page loader & Page transition
+
 		if (plugins.preloader.length && !isNoviBuilder) {
 			pageTransition({
 				target: document.querySelector( '.page' ),

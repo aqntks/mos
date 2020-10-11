@@ -28,8 +28,12 @@ public class MosController {
 
     @GetMapping("/test")
     public String test(Model model){
-        return "/test";
+        StatusResponseDto s = statusService.findById(1L);
+        model.addAttribute("st", s);
+
+        return "test";
     }
+
 
     @GetMapping("/") //시작 화면
     public String start(Model model) {
@@ -110,17 +114,7 @@ public class MosController {
         model.addAttribute("menus", list);
         model.addAttribute("total", om.getTotal());
         model.addAttribute("id", id);
-        model.addAttribute("status", "조리중");
         return "result";
-    }
-
-    @GetMapping("/finish")
-    public String finish(Model model){
-        return "finish";
-    }
-    @GetMapping("/fail")
-    public String fail(Model model){
-        return "fail";
     }
 
     ////////////////////////////////////////////////////////////////////////////// 판매자

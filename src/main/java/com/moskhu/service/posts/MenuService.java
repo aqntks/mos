@@ -25,7 +25,8 @@ public class MenuService {
         Menu menu = menuRepository.findById(menuId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 데이터가 없습니다. id=" + menuId));
 
-        menu.update(requestDto.getSellerId(), requestDto.getMenuName(), requestDto.getMenuPrice(), requestDto.getMenuDescription(), requestDto.getMenuImg(), requestDto.getMenuType());
+        menu.update(requestDto.getSellerId(), requestDto.getMenuName(), requestDto.getMenuPrice(),
+                requestDto.getMenuDescription(), requestDto.getMenuImg(), requestDto.getMenuType());
 
         return menuId;
     }
