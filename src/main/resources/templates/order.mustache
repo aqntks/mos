@@ -61,11 +61,11 @@
                     </div>
                 </div>
                 <div class="rd-navbar-main-outer">
-                    <div class="rd-navbar-main fix">
-                            <ul class="rd-navbar-nav menu-ul">
-                                <li class="rd-nav-item menu-li"><a class="rd-nav-link" href="/order"><span>메뉴</span></a>
+                    <div class="rd-navbar-main">
+                            <ul class="rd-navbar-nav">
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="/order"><span>메뉴</span></a>
                                 </li>
-                                <li class="rd-nav-item menu-li"><a class="rd-nav-link" href="/cart"><span>장바구니</span></a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="/cart"><span>장바구니</span></a>
                                 </li>
                             </ul>
                     </div>
@@ -99,7 +99,7 @@
                             <input type="hidden" id="consumerId{{menuId}}"  value="1">
                             <input type="hidden" id="menuId{{menuId}}"  value="{{menuId}}">
                         </form>
-                        <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 2">
+                        <div class="col-sm-6 col-lg-4 col-xl-3 isotope-item" data-filter="Type 1">
                             <article class="thumbnail-classic block-1">
                                 <div class="thumbnail-classic-figure"><img src="{{menuImg}}" alt="" width="270" height="250"/>
                                 </div>
@@ -108,7 +108,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="{{menuImg}}" data-lightgallery="item"><img src="{{menuImg}}" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}}, '{{menuImg}}')"></button></div>
                                         </div>
                                     </div>
@@ -130,7 +130,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="{{menuImg}}" data-lightgallery="item"><img src="{{menuImg}}" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}}, '{{menuImg}}')"></button></div>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="{{menuImg}}" data-lightgallery="item"><img src="{{menuImg}}" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}}, '{{menuImg}}')"></button></div>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="/images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="{{menuImg}}" data-lightgallery="item"><img src="{{menuImg}}" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}}, '{{menuImg}}')"></button></div>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@
                                         <h5 class="thumbnail-classic-title"><a href="single_product">{{menuName}}</a></h5>
                                         <div class="thumbnail-classic-price product-price">{{menuPrice}}원</div>
                                         <div class="thumbnail-classic-button-wrap">
-                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="/images/카페라떼.jpg" data-lightgallery="item"><img src="images/카페라떼.jpg" alt="" width="270" height="250"/></a></div>
+                                            <div class="thumbnail-classic-button"><a class="button button-gray-6 button-zakaria fl-bigmug-line-search74" href="{{menuImg}}" data-lightgallery="item"><img src="{{menuImg}}" alt="" width="270" height="250"/></a></div>
                                             <div class="thumbnail-classic-button"><button type="button" class="button button-primary button-zakaria fl-bigmug-line-shopping202" onclick="add_cart({{menuId}},'{{menuName}}',{{menuPrice}}, '{{menuImg}}')"></button></div>
                                         </div>
                                     </div>
